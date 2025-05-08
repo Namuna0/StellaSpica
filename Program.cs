@@ -165,7 +165,7 @@ class Program
                     "依存点:\r\n" +
                     "魅力:\r\n" +
                     "知識:\r\n" +
-                    "SAN:\r\n" +
+                    "精神限界:\r\n" +
                     "基礎技能P:\r\n" +
                     "母国語(初期判定値70):\r\n" +
                     "AB:\r\n" +
@@ -178,7 +178,10 @@ class Program
                     "持久力:\r\n" +
                     "技量:\r\n" +
                     "神聖:\r\n" +
+                    "美学:\r\n" +
                     "商売:\r\n" +
+                    "表現力:\r\n" +
+                    "探求心:\r\n" +
                     "```";
 
                 await message.Channel.SendMessageAsync(result);
