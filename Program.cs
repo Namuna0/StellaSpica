@@ -96,7 +96,7 @@ partial class Program
         }
     }
 
-    public async Task Command(string[] texts, long flag, SocketMessage message, SocketGuildUser user, Func<Task> onCompleted)
+    public async Task Command(string[] texts, long flag, SocketMessage message, SocketGuildUser user, Func<string, Task> onCompleted)
     {
         if (!GetPaseFlag(texts, flag))
         {
@@ -104,7 +104,13 @@ partial class Program
             return;
         }
 
-        await onCompleted.Invoke();
+        if (!_currentCharaDic.TryGetValue(user.Id, out var currentChara))
+        {
+            await message.Channel.SendMessageAsync("「?login [キャラクター名]」を呼んでください。");
+            return;
+        }
+
+        await onCompleted.Invoke(currentChara);
     }
 
     private bool GetPaseFlag(string[] texts, long target)
