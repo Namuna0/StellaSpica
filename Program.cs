@@ -90,6 +90,9 @@ partial class Program
             else if (content.StartsWith("?rr ")) await DiceMultiRoll(message, guild, user);
             else if (content.StartsWith("?p ")) await PickRoll(message, guild, user);
             else if (content.StartsWith("?pp ")) await PickMultiRoll(message, guild, user);
+
+            // 採取
+            else if (content.StartsWith("?gather ")) await Gather(message, guild, user);
         }
     }
 
