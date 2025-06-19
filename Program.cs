@@ -93,6 +93,8 @@ partial class Program
 
             // 採取
             else if (content.StartsWith("?gather ")) await Gather(message, guild, user);
+            else if (content.StartsWith("?fell ")) await Fell(message, guild, user);
+            else if (content.StartsWith("?mine ")) await Mine(message, guild, user);
         }
     }
 
@@ -112,6 +114,18 @@ partial class Program
 
         await onCompleted.Invoke(currentChara);
     }
+
+    public async Task Command2(string[] texts, long flag, SocketMessage message, SocketGuildUser user, Func<Task> onCompleted)
+    {
+        if (!GetPaseFlag(texts, flag))
+        {
+            await message.Channel.SendMessageAsync("引数が変です。");
+            return;
+        }
+
+        await onCompleted.Invoke();
+    }
+
 
     private bool GetPaseFlag(string[] texts, long target)
     {
