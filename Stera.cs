@@ -137,6 +137,11 @@ partial class Program
                     else if (rand >= 71 && rand <= 90) item[1]++;
                     else if (rand >= 91 && rand <= 100) item[6]++;
                 }
+                else
+                {
+                    await message.Channel.SendMessageAsync("エリア指定が不正です。");
+                    return;
+                }
 
                 stringBuilder2.Append(rand);
 
@@ -366,6 +371,11 @@ partial class Program
                     else if (rand >= 92 && rand <= 99) item[3]++;
                     else if (rand <= 100) item[4]++;
                 }
+                else
+                {
+                    await message.Channel.SendMessageAsync("エリア指定が不正です。");
+                    return;
+                }
 
                 stringBuilder2.Append(rand);
 
@@ -442,11 +452,6 @@ partial class Program
                 if (item[2] > 0) stringBuilder3.Append($",ミカン×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",クルミ材×{item[3]}");
                 if (item[4] > 0) stringBuilder3.Append($",上質なクルミ材×{item[4]}");
-            }
-            else
-            {
-                await message.Channel.SendMessageAsync("エリア指定が不正です。");
-                return;
             }
 
             await message.Channel.SendMessageAsync(
@@ -603,6 +608,11 @@ partial class Program
                     if (rand >= 80 && rand <= 89) item[4]++;
                     else if (rand >= 90 && rand <= 100) item[5]++;
                 }
+                else
+                {
+                    await message.Channel.SendMessageAsync("エリア指定が不正です。");
+                    return;
+                }
 
                 stringBuilder2.Append(rand);
 
@@ -746,11 +756,6 @@ partial class Program
                 if (item[3] > 0) stringBuilder3.Append($",銅の破片×{item[3]}");
                 if (item[4] > 0) stringBuilder3.Append($",銀の破片×{item[4]}");
                 if (item[5] > 0) stringBuilder3.Append($",チタンの破片×{item[5]}");
-            }
-            else
-            {
-                await message.Channel.SendMessageAsync("エリア指定が不正です。");
-                return;
             }
 
             await message.Channel.SendMessageAsync(
