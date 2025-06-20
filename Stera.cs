@@ -600,7 +600,7 @@ partial class Program
                     else if (rand >= 41 && rand <= 50) item[1]++;
                     else if (rand >= 51 && rand <= 71) item[2]++;
                     else if (rand >= 72 && rand <= 80) item[3]++;
-                    else if (rand >= 80 && rand <= 89) item[4]++;
+                    if (rand >= 80 && rand <= 89) item[4]++;
                     else if (rand >= 90 && rand <= 100) item[5]++;
                 }
 
