@@ -443,13 +443,18 @@ partial class Program
                 if (item[3] > 0) stringBuilder3.Append($",クルミ材×{item[3]}");
                 if (item[4] > 0) stringBuilder3.Append($",上質なクルミ材×{item[4]}");
             }
+            else
+            {
+                await message.Channel.SendMessageAsync("エリア指定が不正です。");
+                return;
+            }
 
             await message.Channel.SendMessageAsync(
             $"<@{user.Id}> :game_die:\r\n" +
             $"```{area}```" +
             $"```【筋力{clear}】{stringBuilder}\r\n" +
             $"【{count}回達成】{stringBuilder2}\r\n" +
-            $"【結果】{stringBuilder3}```");
+            $"【結果】{stringBuilder3.ToString().Substring(",".Length)}```");
         });
     }
 
@@ -613,7 +618,7 @@ partial class Program
             {
                 area = ":rock:都市近郊（Lv0から利用可能）\r\n【《1d100》1-35：石ころ/36-64：石炭/65-80：硝石/81-95：鉄鉱石/96-99：銅鉱石/100：金鉱石】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",石炭×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",硝石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",鉄鉱石×{item[3]}");
@@ -624,7 +629,7 @@ partial class Program
             {
                 area = "🏔️ミドガルネ北方（Lv1から利用可能）\r\n【《1d100》1-40：石ころ/41-70：石炭/71-85：鉄鉱石/86-95：銅鉱石/96-99：銀鉱石/100：金鉱石】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",石炭×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",鉄鉱石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銅鉱石×{item[3]}");
@@ -635,7 +640,7 @@ partial class Program
             {
                 area = "🏔️ミドガルネ南方（Lv2から利用可能）\r\n【《1d100》1-40：石ころ/41-60：石炭/61-70：鉄鉱石/71-80：銅鉱石/81-95：銀鉱石/96-99：月長石/100：金鉱石】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",石炭×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",鉄鉱石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銅鉱石×{item[3]}");
@@ -647,7 +652,7 @@ partial class Program
             {
                 area = "🏔️竜山地帯\r\n【《1d100》1-40：石ころ/41-50：石炭/51-70：鉄鉱石/71-80：銅鉱石/81-95：銀鉱石/96-99：蒼鉄晶/100：金鉱石】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",石炭×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",鉄鉱石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銅鉱石×{item[3]}");
@@ -659,7 +664,7 @@ partial class Program
             {
                 area = "🏔️ドラゴンズエッジ（Lv4から利用可能）\r\n【《1d100》1-40：石ころ/41-60：鉄鉱石/61-70：銅鉱石/71-80：銀鉱石/81-95：蒼鉄晶/96-99：アルブム・クリスタル/100：金鉱石】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",鉄鉱石×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",銅鉱石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銀鉱石×{item[3]}");
@@ -671,7 +676,7 @@ partial class Program
             {
                 area = "🏔️古の坑道（Lv4から利用可能）\r\n【《1d100》1-40：石ころ/41-60：鉄鉱石/61-70：銅鉱石/71-80：銀鉱石/81-90：蒼鉄晶/91-95：水銀鉱/96-100：灰銀石\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",鉄鉱石×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",銅鉱石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銀鉱石×{item[3]}");
@@ -683,7 +688,7 @@ partial class Program
             {
                 area = "🌃ごみ捨て場（Lv0から利用可能）\r\n【《1d100》1-39：石ころ/40-69：空き缶/70-75：石炭/76-100：スクラップ】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",空き缶×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",石炭×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",スクラップ×{item[3]}");
@@ -700,7 +705,7 @@ partial class Program
             {
                 area = "🌃廃品置き場（Lv1から利用可能）\r\n【《1d100》1-40：石ころ/41-70：空き缶/71-85：スクラップ/86-95：アルミの破片/96-99：鉄の破片/100：廃車の部品】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",空き缶×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",スクラップ×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",アルミの破片×{item[3]}");
@@ -711,7 +716,7 @@ partial class Program
             {
                 area = "🏔棄てられた鉱山（Lv2から利用可能）\r\n【《1d100》1-40：石ころ/41-55：硫黄/56-60：硝石/61-70：石炭/71-80：アルミの破片/81-90：鉄の破片/91-99：銅の破片/100：黄金の破片】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",硫黄×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",硝石×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",石炭×{item[3]}");
@@ -724,7 +729,7 @@ partial class Program
             {
                 area = "🏔山中の坑道（Lv3から利用可能）\r\n【《1d100》1-40：石ころ/41-50：鉛の破片/51-70：錫の破片/71-80：石炭/81-90：銅の破片/91-100：銀の破片】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",鉛の破片×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",錫の破片×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",石炭×{item[3]}");
@@ -735,12 +740,17 @@ partial class Program
             {
                 area = "🏔台地の採掘場（Lv4から利用可能）\r\n【《1d100》1-40：石ころ/41-50：亜鉛の破片/51-71：鉄の破片/72-80：銅の破片/80-89：銀の破片/90-100：チタンの破片】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($"石ころ×{item[0]}");
+                if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",亜鉛の破片×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",鉄の破片×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",銅の破片×{item[3]}");
                 if (item[4] > 0) stringBuilder3.Append($",銀の破片×{item[4]}");
                 if (item[5] > 0) stringBuilder3.Append($",チタンの破片×{item[5]}");
+            }
+            else
+            {
+                await message.Channel.SendMessageAsync("エリア指定が不正です。");
+                return;
             }
 
             await message.Channel.SendMessageAsync(
@@ -748,7 +758,7 @@ partial class Program
             $"```{area}```" +
             $"```【筋力{clear}】{stringBuilder}\r\n" +
             $"【{count}回達成】{stringBuilder2}\r\n" +
-            $"【結果】{stringBuilder3}```");
+            $"【結果】{stringBuilder3.ToString().Substring(",".Length)}```");
         });
     }
 }
