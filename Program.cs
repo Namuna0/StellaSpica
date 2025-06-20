@@ -95,6 +95,10 @@ partial class Program
             else if (content.StartsWith("?gather ")) await Gather(message, guild, user);
             else if (content.StartsWith("?fell ")) await Fell(message, guild, user);
             else if (content.StartsWith("?mine ")) await Mine(message, guild, user);
+
+            // バイト
+            else if (content.StartsWith("?part ")) await Part(message, guild, user);
+
         }
     }
 
