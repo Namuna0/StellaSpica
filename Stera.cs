@@ -438,7 +438,7 @@ partial class Program
 
                 if (item[1] > 0) stringBuilder3.Append($",木材×{item[1]}");
             }
-            else if (texts[0] == "🏜ウェストキャニオン")
+            else if (texts[0] == "ウェストキャニオン")
             {
                 area = "🏜️ウェストキャニオン（Lv4から利用可能）\r\n【伐採《1d100》1-50：何もなし/51-100：木材×1d3個】\r\n";
 
