@@ -99,6 +99,9 @@ partial class Program
             // バイト
             else if (content.StartsWith("?part ")) await Part(message, guild, user);
 
+            // バイト
+            else if (content.StartsWith("?d ")) await G(message, guild, user);
+
         }
     }
 
