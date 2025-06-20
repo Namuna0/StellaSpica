@@ -369,7 +369,7 @@ partial class Program
                     if (rand >= 51 && rand <= 80) item[1] += _ms.Next(1, 4);
                     else if (rand >= 81 && rand <= 91) item[2]++;
                     else if (rand >= 92 && rand <= 99) item[3]++;
-                    else if (rand <= 100) item[4]++;
+                    else if (rand >= 100) item[4]++;
                 }
                 else
                 {
@@ -568,7 +568,7 @@ partial class Program
                     if (rand >= 1 && rand <= 70) item[0]++;
                     else if (rand >= 71 && rand <= 89) item[1]++;
                     else if (rand >= 90 && rand <= 99) item[2]++;
-                    else if (rand <= 100) item[3]++;
+                    else if (rand >= 100) item[3]++;
                 }
                 else if (texts[0] == "廃品置き場")
                 {
