@@ -444,7 +444,7 @@ partial class Program
 
                 if (item[1] > 0) stringBuilder3.Append($",木材×{item[1]}");
             }
-            else if (texts[0] == "南方の密林")
+            else if (texts[0] == "森林地帯")
             {
                 area = "🏕️森林地帯（Lv4から利用可能）\r\n【伐採《1d100》1-50：何もなし/51-80：木材×1d3個/81-91：ミカン/92-99：クルミ材/100：上質なクルミ材】\r\n";
 
