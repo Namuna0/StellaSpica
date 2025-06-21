@@ -110,11 +110,11 @@ partial class Program
             }
             else if (content == "?NextNocturneEconomy")
             {
-                await ShowEconomy(message, guild, user, false);
+                await NextNocturneEconomy(message, guild, user);
             }
             else if (content == "?NextFantasiaEconomy")
             {
-                await ShowEconomy(message, guild, user, true);
+                await NextFantasiaEconomy(message, guild, user);
             }
         }
     }
