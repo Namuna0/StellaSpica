@@ -279,7 +279,7 @@ partial class Program
             $"```{area}```" +
             $"```【俊敏{clear}】{stringBuilder}\r\n" +
             $"【{count}回達成】{stringBuilder2}\r\n" +
-            $"【結果】{stringBuilder3}```");
+            $"【結果】{stringBuilder3.ToString().Substring(",".Length)}}```");
         });
     }
 
