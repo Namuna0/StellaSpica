@@ -328,6 +328,7 @@ partial class Program
 
             plt.SavePng("ncse_sample2.png", 800, 400);
 
+            await message.Channel.SendMessageAsync("@here");
             await message.Channel.SendFileAsync("ncse_sample2.png");
 
             var embed = new EmbedBuilder()
