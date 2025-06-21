@@ -256,7 +256,7 @@ partial class Program
 
             if (isFantasia)
             {
-                await ShowNFantasiaGraph(message, dice, day, day2, e, price);
+                await ShowFantasiaGraph(message, dice, day, day2, e, price);
             }
             else
             {
@@ -264,7 +264,7 @@ partial class Program
             }
         }
 
-        private async Task ShowNFantasiaGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
+        private async Task ShowFantasiaGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
         {
             var plt = new Plot();
 
@@ -287,6 +287,7 @@ partial class Program
 
             plt.SavePng("ncse_sample.png", 800, 400);
 
+            await message.Channel.SendMessageAsync("@here");
             await message.Channel.SendFileAsync("ncse_sample.png");
 
             var embed = new EmbedBuilder()
@@ -317,7 +318,7 @@ partial class Program
             var s2 = plt.Add.Scatter(_xs, _price.ToArray());
             s2.LegendText = "経済";
 
-            plt.Title("ノクターン・NCSE総合指数");
+            plt.Title("F/N経済");
             plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
             plt.Axes.Title.Label.FontSize = 32;
             plt.Axes.SetLimits(24, 0, -75, 150);
@@ -330,8 +331,8 @@ partial class Program
             await message.Channel.SendFileAsync("ncse_sample2.png");
 
             var embed = new EmbedBuilder()
-                .WithTitle("New Saint City Stock Exchange - Report")
-                .WithDescription("NCSE総合指数:")
+                .WithTitle("今日の経済")
+                .WithDescription("F/N経済:")
                 .WithColor(Discord.Color.DarkGrey)
                 .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
                 .AddField("```経済状況:```", day, inline: true)
