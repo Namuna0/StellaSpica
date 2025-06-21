@@ -69,7 +69,7 @@ partial class Program
             await Task.CompletedTask;
         }
 
-        private async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, bool isFantasia)
+        public async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, bool isFantasia)
         {
             int e = 0;
             string day = "";
@@ -364,10 +364,10 @@ partial class Program
 
     private async Task NextFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        await _nStock.StartFantasiaEconomy(message, guild, user);
+        await _nStock.ShowEconomy(message, guild, user, true);
     }
     private async Task NextNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        await _fStock.StartNocturneEconomy(message, guild, user);
+        await _fStock.ShowEconomy(message, guild, user, false);
     }
 }
