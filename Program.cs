@@ -108,6 +108,14 @@ partial class Program
             {
                 await StartFantasiaEconomy(message, guild, user);
             }
+            else if (content == "?NextNocturneEconomy")
+            {
+                await ShowEconomy(message, guild, user, false);
+            }
+            else if (content == "?NextFantasiaEconomy")
+            {
+                await ShowEconomy(message, guild, user, true);
+            }
         }
     }
 

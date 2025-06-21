@@ -32,7 +32,7 @@ partial class Program
         _fMidnightChecker = new Timer(async _ =>
         {
             var now = DateTime.Now;
-            if (now.Hour == 0 && now.Minute == 0 && !_fAlreadySent)
+            if (now.Hour == 0 && now.Minute == 0 && !_nAlreadySent)
             {
                 await ShowEconomy(message, guild, user, true);
 
@@ -40,7 +40,7 @@ partial class Program
             }
             if (now.Minute != 0) _fAlreadySent = false;
 
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
+        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1.0));
 
         await Task.CompletedTask;
     }
@@ -318,9 +318,9 @@ partial class Program
         // レジェンド表示を有効化
         plt.ShowLegend();
 
-        plt.SavePng("ncse_sample.png", 800, 400);
+        plt.SavePng("ncse_sample2.png", 800, 400);
 
-        await message.Channel.SendFileAsync("ncse_sample.png");
+        await message.Channel.SendFileAsync("ncse_sample2.png");
 
         var embed = new EmbedBuilder()
             .WithTitle("New Saint City Stock Exchange - Report")
