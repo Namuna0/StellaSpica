@@ -1,339 +1,372 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using MathNet.Numerics.Random;
 using ScottPlot;
 
 partial class Program
 {
-    private Timer _fMidnightChecker;
-    private Timer _nMidnightChecker;
-    private bool _fAlreadySent = false;
-    private bool _nAlreadySent = false;
-
-    private LinkedList<int> _stock = new LinkedList<int>();
-    private LinkedList<int> _price = new LinkedList<int>();
-
-    private enum Economy
+    class Stock
     {
-        GreatDepression,
-        Depression,
-        Recession,
-        Normal,
-        Booming,
-        Bubble
-    }
-    private Economy _economy = Economy.Normal;
+        private Timer _midnightChecker;
+        private bool _alreadySent = false;
 
-    private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+        private LinkedList<int> _stock = new LinkedList<int>();
+        private LinkedList<int> _price = new LinkedList<int>();
 
-    int _recount = 0;
-
-    private async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
-    {
-        _fMidnightChecker = new Timer(async _ =>
+        private enum Economy
         {
-            var now = DateTime.Now;
-            if (now.Hour == 0 && now.Minute == 0 && !_nAlreadySent)
+            GreatDepression,
+            Depression,
+            Recession,
+            Normal,
+            Booming,
+            Bubble
+        }
+        private Economy _economy = Economy.Normal;
+
+        private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+
+        private int _recount = 0;
+        private MersenneTwister _ms;
+
+        public Stock(MersenneTwister ms)
+        {
+            _ms = ms;
+        }
+
+        public async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+        {
+            _midnightChecker = new Timer(async _ =>
             {
-                await ShowEconomy(message, guild, user, true);
+                var now = DateTime.Now;
+                if (now.Hour == 0 && now.Minute == 0 && !_alreadySent)
+                {
+                    await ShowEconomy(message, guild, user, true);
 
-                _fAlreadySent = true;
-            }
-            if (now.Minute != 0) _fAlreadySent = false;
+                    _alreadySent = true;
+                }
+                if (now.Minute != 0) _alreadySent = false;
 
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1.0));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1.0));
 
-        await Task.CompletedTask;
-    }
-    private async Task StartNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
-    {
-        _nMidnightChecker = new Timer(async _ =>
+            await Task.CompletedTask;
+        }
+        public async Task StartNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
         {
-            var now = DateTime.Now;
-            if (now.Hour == 0 && now.Minute == 0 && !_nAlreadySent)
+            _midnightChecker = new Timer(async _ =>
             {
-                await ShowEconomy(message, guild, user, false);
+                var now = DateTime.Now;
+                if (now.Hour == 0 && now.Minute == 0 && !_alreadySent)
+                {
+                    await ShowEconomy(message, guild, user, false);
 
-                _nAlreadySent = true;
-            }
-            if (now.Minute != 0) _nAlreadySent = false;
+                    _alreadySent = true;
+                }
+                if (now.Minute != 0) _alreadySent = false;
 
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
-        await Task.CompletedTask;
-    }
-
-    private async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, bool isFantasia)
-    {
-        int e = 0;
-        string day = "";
-        string dice = "";
-        string price = "";
-
-        if (_economy == Economy.Normal)
-        {
-            e = _ms.Next(1, 101) + 20;
-            dice = $"1d100({e - 20})+20 => {e}";
-            day = "通常";
-            if (e < 70) price = "±0%";
-            else price = "±10%";
-        }
-        else if (_economy == Economy.Recession)
-        {
-            e = _ms.Next(1, 101) - 30;
-            dice = $"1d100({e + 30})-30 => {e}";
-            day = "不況";
-            price = "-10%";
-        }
-        else if (_economy == Economy.Depression)
-        {
-            e = _ms.Next(1, 101) - 40;
-            dice = $"1d100({e + 40})-40 => {e}";
-            day = $"恐慌({3 - _recount}日目)";
-            price = "-20%";
-        }
-        else if (_economy == Economy.GreatDepression)
-        {
-            e = _ms.Next(1, 101) - 50;
-            dice = $"1d100({e + 50})-50 => {e}";
-            day = $"大恐慌({3 - _recount}日目)";
-            price = "-30%";
-        }
-        else if (_economy == Economy.Booming)
-        {
-            e = _ms.Next(1, 101) + 30;
-            dice = $"1d100({e - 30})+30 => {e}";
-            day = $"好景気({3 - _recount}日目)";
-            price = "+30%";
-        }
-        else if (_economy == Economy.Bubble)
-        {
-            e = _ms.Next(1, 101) + 50;
-            dice = $"1d100({e - 50})+50 => {e}";
-            day = $"バブル💃({3 - _recount}日目)";
-            price = "+50%";
+            await Task.CompletedTask;
         }
 
-        if (_recount <= 0)
+        private async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, bool isFantasia)
         {
+            int e = 0;
+            string day = "";
+            string dice = "";
+            string price = "";
+
             if (_economy == Economy.Normal)
             {
-                if (e <= 40)
-                {
-                    _economy = Economy.Recession;
-                    _recount = 0;
-                }
-                else if (e >= 100)
-                {
-                    _economy = Economy.Booming;
-                    _recount = 2;
-                }
-                else
-                {
-                    _economy = Economy.Normal;
-                    _recount = 0;
-                }
+                e = _ms.Next(1, 101) + 20;
+                dice = $"1d100({e - 20})+20 => {e}";
+                day = "通常";
+                if (e < 70) price = "±0%";
+                else price = "±10%";
             }
             else if (_economy == Economy.Recession)
             {
-                if (e <= 30)
-                {
-                    _economy = Economy.Depression;
-                    _recount = 2;
-                }
-                else if (e >= 60)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 0;
-                }
-                else
-                {
-                    _economy = Economy.Recession;
-                    _recount = 0;
-                }
+                e = _ms.Next(1, 101) - 30;
+                dice = $"1d100({e + 30})-30 => {e}";
+                day = "不況";
+                price = "-10%";
             }
             else if (_economy == Economy.Depression)
             {
-                if (e <= 20)
-                {
-                    _economy = Economy.GreatDepression;
-                    _recount = 2;
-                }
-                else if (e >= 35)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 0;
-                }
-                else
-                {
-                    _economy = Economy.Depression;
-                    _recount = 2;
-                }
+                e = _ms.Next(1, 101) - 40;
+                dice = $"1d100({e + 40})-40 => {e}";
+                day = $"恐慌({3 - _recount}日目)";
+                price = "-20%";
             }
             else if (_economy == Economy.GreatDepression)
             {
-                if (e >= 30)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 0;
-                }
-                else
-                {
-                    _economy = Economy.GreatDepression;
-                    _recount = 2;
-                }
+                e = _ms.Next(1, 101) - 50;
+                dice = $"1d100({e + 50})-50 => {e}";
+                day = $"大恐慌({3 - _recount}日目)";
+                price = "-30%";
             }
             else if (_economy == Economy.Booming)
             {
-                if (e <= 70)
+                e = _ms.Next(1, 101) + 30;
+                dice = $"1d100({e - 30})+30 => {e}";
+                day = $"好景気({3 - _recount}日目)";
+                price = "+30%";
+            }
+            else if (_economy == Economy.Bubble)
+            {
+                e = _ms.Next(1, 101) + 50;
+                dice = $"1d100({e - 50})+50 => {e}";
+                day = $"バブル💃({3 - _recount}日目)";
+                price = "+50%";
+            }
+
+            if (_recount <= 0)
+            {
+                if (_economy == Economy.Normal)
                 {
-                    _economy = Economy.Depression;
-                    _recount = 2;
+                    if (e <= 40)
+                    {
+                        _economy = Economy.Recession;
+                        _recount = 0;
+                    }
+                    else if (e >= 100)
+                    {
+                        _economy = Economy.Booming;
+                        _recount = 2;
+                    }
+                    else
+                    {
+                        _economy = Economy.Normal;
+                        _recount = 0;
+                    }
                 }
-                else if (e >= 120)
+                else if (_economy == Economy.Recession)
                 {
-                    _economy = Economy.Bubble;
-                    _recount = 2;
+                    if (e <= 30)
+                    {
+                        _economy = Economy.Depression;
+                        _recount = 2;
+                    }
+                    else if (e >= 60)
+                    {
+                        _economy = Economy.Normal;
+                        _recount = 0;
+                    }
+                    else
+                    {
+                        _economy = Economy.Recession;
+                        _recount = 0;
+                    }
                 }
-                else
+                else if (_economy == Economy.Depression)
+                {
+                    if (e <= 20)
+                    {
+                        _economy = Economy.GreatDepression;
+                        _recount = 2;
+                    }
+                    else if (e >= 35)
+                    {
+                        _economy = Economy.Normal;
+                        _recount = 0;
+                    }
+                    else
+                    {
+                        _economy = Economy.Depression;
+                        _recount = 2;
+                    }
+                }
+                else if (_economy == Economy.GreatDepression)
+                {
+                    if (e >= 30)
+                    {
+                        _economy = Economy.Normal;
+                        _recount = 0;
+                    }
+                    else
+                    {
+                        _economy = Economy.GreatDepression;
+                        _recount = 2;
+                    }
+                }
+                else if (_economy == Economy.Booming)
+                {
+                    if (e <= 70)
+                    {
+                        _economy = Economy.Depression;
+                        _recount = 2;
+                    }
+                    else if (e >= 120)
+                    {
+                        _economy = Economy.Bubble;
+                        _recount = 2;
+                    }
+                    else
+                    {
+                        _economy = Economy.Normal;
+                        _recount = 0;
+                    }
+                }
+                else if (_economy == Economy.Bubble)
                 {
                     _economy = Economy.Normal;
                     _recount = 0;
                 }
             }
+            else
+            {
+                _recount--;
+            }
+
+            string day2 = "";
+
+            if (_economy == Economy.Normal)
+            {
+                day2 = "通常";
+            }
+            else if (_economy == Economy.Recession)
+            {
+                day2 = "不況";
+            }
+            else if (_economy == Economy.Depression)
+            {
+                day2 = $"恐慌({3 - _recount}日目)";
+            }
+            else if (_economy == Economy.GreatDepression)
+            {
+                day2 = $"大恐慌({3 - _recount}日目)";
+            }
+            else if (_economy == Economy.Booming)
+            {
+                day2 = $"好景気({3 - _recount}日目)";
+            }
             else if (_economy == Economy.Bubble)
             {
-                _economy = Economy.Normal;
-                _recount = 0;
+                day2 = $"バブル💃({3 - _recount}日目)";
+            }
+
+            _stock.AddLast(e);
+            _price.AddLast((int)(_economy - 2) * 25);
+
+            if (_stock.Count > 25)
+            {
+                _stock.RemoveFirst();
+                _price.RemoveFirst();
+            }
+
+            if (isFantasia)
+            {
+                await ShowNFantasiaGraph(message, dice, day, day2, e, price);
+            }
+            else
+            {
+                await ShowNocturneGraph(message, dice, day, day2, e, price);
             }
         }
-        else
+
+        private async Task ShowNFantasiaGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
         {
-            _recount--;
+            var plt = new Plot();
+
+            plt.Font.Set("Noto Sans CJK JP");
+
+            var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
+            s1.FillY = true;
+
+            s1.LegendText = "株価";
+            var s2 = plt.Add.Scatter(_xs, _price.ToArray());
+            s2.LegendText = "経済";
+
+            plt.Title("ファンタジア・アスガリア証券取引所");
+            plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
+            plt.Axes.Title.Label.FontSize = 32;
+            plt.Axes.SetLimits(24, 0, -75, 150);
+
+            // レジェンド表示を有効化
+            plt.ShowLegend();
+
+            plt.SavePng("ncse_sample.png", 800, 400);
+
+            await message.Channel.SendFileAsync("ncse_sample.png");
+
+            var embed = new EmbedBuilder()
+                .WithTitle("Asgaria Stock Exchange - Report\r\n")
+            .WithDescription("アスガリア証券取引所:")
+                .WithColor(Discord.Color.DarkGrey)
+                .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
+                .AddField("```経済状況:```", day, inline: true)
+                .AddField("```次回の経済情勢:```", day2, inline: true)
+                .AddField("\u200B", "```―――――――🪙株価・物価情報―――――――```", inline: false)
+                .AddField("現在株価:", $"{e}G", inline: true)
+                .AddField("物価変動:", "+30%", inline: true)
+                .Build();
+
+            await message.Channel.SendMessageAsync(embed: embed);
         }
 
-        string day2 = "";
+        private async Task ShowNocturneGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
+        {
+            var plt = new Plot();
 
-        if (_economy == Economy.Normal)
-        {
-            day2 = "通常";
-        }
-        else if (_economy == Economy.Recession)
-        {
-            day2 = "不況";
-        }
-        else if (_economy == Economy.Depression)
-        {
-            day2 = $"恐慌({3 - _recount}日目)";
-        }
-        else if (_economy == Economy.GreatDepression)
-        {
-            day2 = $"大恐慌({3 - _recount}日目)";
-        }
-        else if (_economy == Economy.Booming)
-        {
-            day2 = $"好景気({3 - _recount}日目)";
-        }
-        else if (_economy == Economy.Bubble)
-        {
-            day2 = $"バブル💃({3 - _recount}日目)";
-        }
+            plt.Font.Set("Noto Sans CJK JP");
 
-        _stock.AddLast(e);
-        _price.AddLast((int)(_economy - 2) * 25);
+            var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
+            s1.FillY = true;
 
-        if (_stock.Count > 25)
-        {
-            _stock.RemoveFirst();
-            _price.RemoveFirst();
-        }
+            s1.LegendText = "株価";
+            var s2 = plt.Add.Scatter(_xs, _price.ToArray());
+            s2.LegendText = "経済";
 
-        if (isFantasia)
-        {
-            await ShowNFantasiaGraph(message, dice, day, day2, e, price);
-        }
-        else
-        {
-            await ShowNocturneGraph(message, dice, day, day2, e, price);
+            plt.Title("ノクターン・NCSE総合指数");
+            plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
+            plt.Axes.Title.Label.FontSize = 32;
+            plt.Axes.SetLimits(24, 0, -75, 150);
+
+            // レジェンド表示を有効化
+            plt.ShowLegend();
+
+            plt.SavePng("ncse_sample2.png", 800, 400);
+
+            await message.Channel.SendFileAsync("ncse_sample2.png");
+
+            var embed = new EmbedBuilder()
+                .WithTitle("New Saint City Stock Exchange - Report")
+                .WithDescription("NCSE総合指数:")
+                .WithColor(Discord.Color.DarkGrey)
+                .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
+                .AddField("```経済状況:```", day, inline: true)
+                .AddField("```次回の経済情勢:```", day2, inline: true)
+                .AddField("\u200B", "```―――――――🪙株価・物価情報―――――――```", inline: false)
+                .AddField("```現在株価:```", $"{e}G", inline: true)
+                .AddField("```物価変動:```", price, inline: true)
+                .Build();
+
+            await message.Channel.SendMessageAsync(embed: embed);
         }
     }
 
-    private async Task ShowNFantasiaGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
+    private Stock _nStock;
+    private Stock _fStock;
+
+    private async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        var plt = new Plot();
+        _nStock = new Stock(_ms);
 
-        plt.Font.Set("Noto Sans CJK JP");
+        await _nStock.StartFantasiaEconomy(message, guild, user);
+    }
+    private async Task StartNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    {
+        _fStock = new Stock(_ms);
 
-        var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
-        s1.FillY = true;
-
-        s1.LegendText = "株価";
-        var s2 = plt.Add.Scatter(_xs, _price.ToArray());
-        s2.LegendText = "経済";
-
-        plt.Title("ファンタジア・アスガリア証券取引所");
-        plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
-        plt.Axes.Title.Label.FontSize = 32;
-        plt.Axes.SetLimits(24, 0, -75, 150);
-
-        // レジェンド表示を有効化
-        plt.ShowLegend();
-
-        plt.SavePng("ncse_sample.png", 800, 400);
-
-        await message.Channel.SendFileAsync("ncse_sample.png");
-
-        var embed = new EmbedBuilder()
-            .WithTitle("Asgaria Stock Exchange - Report\r\n")
-        .WithDescription("アスガリア証券取引所:")
-            .WithColor(Discord.Color.DarkGrey)
-            .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
-            .AddField("```経済状況:```", day, inline: true)
-            .AddField("```次回の経済情勢:```", day2, inline: true)
-            .AddField("\u200B", "```―――――――🪙株価・物価情報―――――――```", inline: false)
-            .AddField("現在株価:", $"{e}G", inline: true)
-            .AddField("物価変動:", "+30%", inline: true)
-            .Build();
-
-        await message.Channel.SendMessageAsync(embed: embed);
+        await _fStock.StartNocturneEconomy(message, guild, user);
     }
 
-    private async Task ShowNocturneGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
+    private async Task NextFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        var plt = new Plot();
-
-        plt.Font.Set("Noto Sans CJK JP");
-
-        var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
-        s1.FillY = true;
-
-        s1.LegendText = "株価";
-        var s2 = plt.Add.Scatter(_xs, _price.ToArray());
-        s2.LegendText = "経済";
-
-        plt.Title("ノクターン・NCSE総合指数");
-        plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
-        plt.Axes.Title.Label.FontSize = 32;
-        plt.Axes.SetLimits(24, 0, -75, 150);
-
-        // レジェンド表示を有効化
-        plt.ShowLegend();
-
-        plt.SavePng("ncse_sample2.png", 800, 400);
-
-        await message.Channel.SendFileAsync("ncse_sample2.png");
-
-        var embed = new EmbedBuilder()
-            .WithTitle("New Saint City Stock Exchange - Report")
-            .WithDescription("NCSE総合指数:")
-            .WithColor(Discord.Color.DarkGrey)
-            .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
-            .AddField("```経済状況:```", day, inline: true)
-            .AddField("```次回の経済情勢:```", day2, inline: true)
-            .AddField("\u200B", "```―――――――🪙株価・物価情報―――――――```", inline: false)
-            .AddField("```現在株価:```", $"{e}G", inline: true)
-            .AddField("```物価変動:```", price, inline: true)
-            .Build();
-
-        await message.Channel.SendMessageAsync(embed: embed);
+        await _nStock.StartFantasiaEconomy(message, guild, user);
+    }
+    private async Task NextNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    {
+        await _fStock.StartNocturneEconomy(message, guild, user);
     }
 }
