@@ -99,9 +99,15 @@ partial class Program
             // バイト
             else if (content.StartsWith("?part ")) await Part(message, guild, user);
 
-            // バイト
-            else if (content.StartsWith("?d ")) await G(message, guild, user);
-
+            // 株
+            else if (content == "?StartNocturneEconomy")
+            {
+                await StartNocturneEconomy(message, guild, user);
+            }
+            else if (content == "?StartFantasiaEconomy")
+            {
+                await StartFantasiaEconomy(message, guild, user);
+            }
         }
     }
 
