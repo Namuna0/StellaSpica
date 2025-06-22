@@ -116,6 +116,10 @@ partial class Program
             {
                 await NextFantasiaEconomy(message, guild, user);
             }
+            else if (content == "?GetTime")
+            {
+                await A(message, guild, user);
+            }
         }
     }
 

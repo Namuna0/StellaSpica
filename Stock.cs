@@ -2,6 +2,7 @@
 using Discord.WebSocket;
 using MathNet.Numerics.Random;
 using ScottPlot;
+using ScottPlot.Palettes;
 
 partial class Program
 {
@@ -22,7 +23,7 @@ partial class Program
             Booming,
             Bubble
         }
-        private Economy _economy = Economy.Normal;
+        private Economy _economy = Economy.Bubble;
 
         private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
@@ -370,5 +371,14 @@ partial class Program
     private async Task NextNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
         await _fStock.ShowEconomy(message, guild, user, false);
+    }
+
+    private async Task A(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    {
+        var now = DateTime.Now;
+
+        await message.Channel.SendMessageAsync($"時間{now.Hour}");
+        await message.Channel.SendMessageAsync($"分{now.Minute}");
+
     }
 }
