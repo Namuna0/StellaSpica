@@ -23,7 +23,7 @@ partial class Program
             Booming,
             Bubble
         }
-        private Economy _economy = Economy.Bubble;
+        private Economy _economy = Economy.Normal;
 
         private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
@@ -40,7 +40,7 @@ partial class Program
             _midnightChecker = new Timer(async _ =>
             {
                 var now = DateTime.Now;
-                if (now.Hour == 0 && now.Minute == 0 && !_alreadySent)
+                if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
                 {
                     await ShowEconomy(message, guild, user, true);
 
@@ -48,7 +48,7 @@ partial class Program
                 }
                 if (now.Minute != 0) _alreadySent = false;
 
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1.0));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             await Task.CompletedTask;
         }
@@ -57,7 +57,7 @@ partial class Program
             _midnightChecker = new Timer(async _ =>
             {
                 var now = DateTime.Now;
-                if (now.Hour == 0 && now.Minute == 0 && !_alreadySent)
+                if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
                 {
                     await ShowEconomy(message, guild, user, false);
 
@@ -65,7 +65,7 @@ partial class Program
                 }
                 if (now.Minute != 0) _alreadySent = false;
 
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             await Task.CompletedTask;
         }
