@@ -58,11 +58,13 @@ partial class Program
                 else if (texts[0] == "白亜の森")
                 {
                     if (rand >= 1 && rand <= 50) item[0]++;
-                    else if (rand >= 51 && rand <= 70) item[1]++;
-                    else if (rand >= 71 && rand <= 85) item[2]++;
-                    else if (rand >= 86 && rand <= 90) item[3]++;
-                    else if (rand >= 91 && rand <= 95) item[4]++;
-                    else if (rand >= 96 && rand <= 100) item[5]++;
+                    else if (rand >= 51 && rand <= 61) item[1]++;
+
+                    if (rand >= 61 && rand <= 70) item[2]++;
+                    else if (rand >= 71 && rand <= 85) item[3]++;
+                    else if (rand >= 86 && rand <= 90) item[4]++;
+                    else if (rand >= 91 && rand <= 95) item[5]++;
+                    else if (rand >= 96 && rand <= 100) item[6]++;
                 }
                 else if (texts[0] == "休火山の麓")
                 {
@@ -177,14 +179,15 @@ partial class Program
             }
             else if (texts[0] == "白亜の森")
             {
-                area = "🌳白亜の森（Lv2から利用可能）\r\n【採取《1d100》1-50：雑草/51-70：薬草/71-85：木立のトウガラシ/86-90：青癒草/91-95:ハチミツ/96-100：カカオ】\r\n";
+                area = "🌳白亜の森（Lv2から利用可能）\r\n【採取《1d100》1-50：雑草/51-61：薬草/61-70：ヒラタケ/71-85：木立のトウガラシ/86-90：青癒草/91-95:ハチミツ/96-100：カカオ】\r\n";
 
                 if (item[0] > 0) stringBuilder3.Append($",雑草×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",薬草×{item[1]}");
-                if (item[2] > 0) stringBuilder3.Append($",木立のトウガラシ×{item[2]}");
-                if (item[3] > 0) stringBuilder3.Append($",青癒草×{item[3]}");
-                if (item[4] > 0) stringBuilder3.Append($",ハチミツ×{item[4]}");
-                if (item[5] > 0) stringBuilder3.Append($",カカオ×{item[5]}");
+                if (item[2] > 0) stringBuilder3.Append($",ヒラタケ×{item[2]}");
+                if (item[3] > 0) stringBuilder3.Append($",木立のトウガラシ×{item[3]}");
+                if (item[4] > 0) stringBuilder3.Append($",青癒草×{item[4]}");
+                if (item[5] > 0) stringBuilder3.Append($",ハチミツ×{item[5]}");
+                if (item[6] > 0) stringBuilder3.Append($",カカオ×{item[6]}");
             }
             else if (texts[0] == "休火山の麓")
             {
