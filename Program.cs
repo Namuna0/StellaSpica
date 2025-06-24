@@ -100,21 +100,21 @@ partial class Program
             else if (content.StartsWith("?part ")) await Part(message, guild, user);
 
             // 株
-            else if (content == "?StartNocturneEconomy")
+            else if (content == "?StartEconomy")
             {
-                await StartNocturneEconomy(message, guild, user);
+                await StartEconomy(message, guild, user);
             }
-            else if (content == "?StartFantasiaEconomy")
+            else if (content == "?NextEconomy")
             {
-                await StartFantasiaEconomy(message, guild, user);
+                await NextEconomy(message, guild, user);
             }
-            else if (content == "?NextNocturneEconomy")
+            else if (content == "?StartTrade")
             {
-                await NextNocturneEconomy(message, guild, user);
+                await StartTrade(message, guild, user);
             }
-            else if (content == "?NextFantasiaEconomy")
+            else if (content == "?NextTrade")
             {
-                await NextFantasiaEconomy(message, guild, user);
+                await NextTrade(message, guild, user);
             }
             else if (content == "?GetTime")
             {

@@ -2,7 +2,6 @@
 using Discord.WebSocket;
 using MathNet.Numerics.Random;
 using ScottPlot;
-using ScottPlot.Palettes;
 
 partial class Program
 {
@@ -40,31 +39,14 @@ partial class Program
             _price.AddLast((int)(Economy.Recession - 2) * 25);
         }
 
-        public async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+        public async Task StartEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
         {
             _midnightChecker = new Timer(async _ =>
             {
                 var now = DateTime.Now;
                 if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
                 {
-                    await ShowEconomy(message, guild, user, true);
-
-                    _alreadySent = true;
-                }
-                if (now.Minute != 0) _alreadySent = false;
-
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-
-            await Task.CompletedTask;
-        }
-        public async Task StartNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
-        {
-            _midnightChecker = new Timer(async _ =>
-            {
-                var now = DateTime.Now;
-                if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
-                {
-                    await ShowEconomy(message, guild, user, false);
+                    await ShowEconomy(message, guild, user);
 
                     _alreadySent = true;
                 }
@@ -75,7 +57,7 @@ partial class Program
             await Task.CompletedTask;
         }
 
-        public async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, bool isFantasia)
+        public async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
         {
             int e = 0;
             string day = "";
@@ -260,58 +242,9 @@ partial class Program
                 _price.RemoveFirst();
             }
 
-            if (isFantasia)
-            {
-                await ShowFantasiaGraph(message, dice, day, day2, e, price);
-            }
-            else
-            {
-                await ShowNocturneGraph(message, dice, day, day2, e, price);
-            }
+            await ShowGraph(message, dice, day, day2, e, price);
         }
-
-        private async Task ShowFantasiaGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
-        {
-            var plt = new Plot();
-
-            plt.Font.Set("Noto Sans CJK JP");
-
-            var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
-            s1.FillY = true;
-
-            s1.LegendText = "株価";
-            var s2 = plt.Add.Scatter(_xs, _price.ToArray());
-            s2.LegendText = "経済";
-
-            plt.Title("ファンタジア・アスガリア証券取引所");
-            plt.Axes.Title.Label.ForeColor = Colors.DarkRed;
-            plt.Axes.Title.Label.FontSize = 32;
-            plt.Axes.SetLimits(24, 0, -75, 150);
-
-            // レジェンド表示を有効化
-            plt.ShowLegend();
-
-            plt.SavePng("ncse_sample.png", 800, 400);
-
-            await message.Channel.SendMessageAsync("@here");
-            await message.Channel.SendFileAsync("ncse_sample.png");
-
-            var embed = new EmbedBuilder()
-                .WithTitle("Asgaria Stock Exchange - Report\r\n")
-            .WithDescription("アスガリア証券取引所:")
-                .WithColor(Discord.Color.DarkGrey)
-                .AddField(dice, "```――――――――――📊経済情報――――――――――```", inline: false)
-                .AddField("```経済状況:```", day, inline: true)
-                .AddField("```次回の経済情勢:```", day2, inline: true)
-                .AddField("\u200B", "```―――――――🪙株価・物価情報―――――――```", inline: false)
-                .AddField("現在株価:", $"{e}G", inline: true)
-                .AddField("物価変動:", "+30%", inline: true)
-                .Build();
-
-            await message.Channel.SendMessageAsync(embed: embed);
-        }
-
-        private async Task ShowNocturneGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
+        private async Task ShowGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
         {
             var plt = new Plot();
 
@@ -353,29 +286,18 @@ partial class Program
         }
     }
 
-    private Stock _nStock;
-    private Stock _fStock;
+    private Stock _stock;
 
-    private async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    private async Task StartEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        _nStock = new Stock(_ms);
+        _stock = new Stock(_ms);
 
-        await _nStock.StartFantasiaEconomy(message, guild, user);
-    }
-    private async Task StartNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
-    {
-        _fStock = new Stock(_ms);
-
-        await _fStock.StartNocturneEconomy(message, guild, user);
+        await _stock.StartEconomy(message, guild, user);
     }
 
-    private async Task NextFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    private async Task NextEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        await _nStock.ShowEconomy(message, guild, user, true);
-    }
-    private async Task NextNocturneEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
-    {
-        await _fStock.ShowEconomy(message, guild, user, false);
+        await _stock.ShowEconomy(message, guild, user);
     }
 
     private async Task A(SocketMessage message, SocketGuild guild, SocketGuildUser user)
