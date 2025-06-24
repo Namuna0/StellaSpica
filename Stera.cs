@@ -199,11 +199,11 @@ partial class Program
             {
                 area = "🌲妖精の森（Lv4〜）\r\n【採取《1d100》1-50：なにもなし/51-60：緑癒草/61-70：ヒラタケ/71-80：妖精トンボ/81-95：マボロシドングリ/96-100：マンドラゴラ】\r\n";
 
-                if (item[0] > 0) stringBuilder3.Append($",緑癒草×{item[0]}");
-                if (item[1] > 0) stringBuilder3.Append($",ヒラタケ×{item[1]}");
-                if (item[2] > 0) stringBuilder3.Append($",妖精トンボ×{item[2]}");
-                if (item[3] > 0) stringBuilder3.Append($",マボロシドングリ×{item[3]}");
-                if (item[4] > 0) stringBuilder3.Append($",マンドラゴラ×{item[4]}");
+                if (item[1] > 0) stringBuilder3.Append($",緑癒草×{item[1]}");
+                if (item[2] > 0) stringBuilder3.Append($",ヒラタケ×{item[2]}");
+                if (item[3] > 0) stringBuilder3.Append($",妖精トンボ×{item[3]}");
+                if (item[4] > 0) stringBuilder3.Append($",マボロシドングリ×{item[4]}");
+                if (item[5] > 0) stringBuilder3.Append($",マンドラゴラ×{item[5]}");
             }
             else if (texts[0] == "中部の草原")
             {

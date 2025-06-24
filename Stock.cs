@@ -23,7 +23,7 @@ partial class Program
             Booming,
             Bubble
         }
-        private Economy _economy = Economy.Normal;
+        private Economy _economy = Economy.Recession;
 
         private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
@@ -33,6 +33,11 @@ partial class Program
         public Stock(MersenneTwister ms)
         {
             _ms = ms;
+
+            _stock.AddLast(37);
+            _stock.AddLast(50);
+            _price.AddLast((int)(Economy.Recession - 2) * 25);
+            _price.AddLast((int)(Economy.Recession - 2) * 25);
         }
 
         public async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
