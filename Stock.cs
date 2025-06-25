@@ -36,8 +36,9 @@ partial class Program
 
             _stock.AddLast(37);
             _stock.AddLast(50);
+            _stock.AddLast(10);
             _price.AddLast((int)(Economy.Recession - 2) * 25);
-            _price.AddLast((int)(Economy.Recession - 2) * 25);
+            _price.AddLast((int)(Economy.Depression - 2) * 25);
         }
 
         public async Task StartFantasiaEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
