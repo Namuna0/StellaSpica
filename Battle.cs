@@ -331,40 +331,40 @@ partial class Program
         {
             Suspect suspect = new Suspect();
 
-            if (dice == 1)
+            if (i == 1)
             {
                 suspect.Background = "①労働者(なにもなし)";
                 suspect.Name = "労働者　　　　　";
             }
-            else if (dice == 2)
+            else if (i == 2)
             {
                 suspect.Background = "②法官◆(推理基準値 + 15、容疑度 - 2)";
                 suspect.Name = "法官◆　　　　　";
                 suspect.Inference = 15;
                 suspect.Suspicion = -2;
             }
-            else if (dice == 3)
+            else if (i == 3)
             {
                 suspect.Background = "③弁護士◆(推理基準値 + 15、容疑度 - 2)";
                 suspect.Name = "弁護士◆　　　　";
                 suspect.Inference = 15;
                 suspect.Suspicion = -2;
             }
-            else if (dice == 4)
+            else if (i == 4)
             {
                 suspect.Background = "④警官(容疑度 - 1)";
                 suspect.Name = "警官　　　　　　";
                 suspect.Inference = 0;
                 suspect.Suspicion = -1;
             }
-            else if (dice == 5)
+            else if (i == 5)
             {
                 suspect.Background = "⑤代議士◆(推理基準値 + 10)";
                 suspect.Name = "代議士◆　　　　";
                 suspect.Inference = 10;
                 suspect.Suspicion = 0;
             }
-            else if (dice == 6)
+            else if (i == 6)
             {
                 suspect.Background = "⑥兵卒(反撃値 + 1)";
                 suspect.Name = "兵卒　　　　　　";
@@ -372,7 +372,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 1;
             }
-            else if (dice == 7)
+            else if (i == 7)
             {
                 suspect.Background = "⑦将校◆(容疑度 - 1 & 反撃値 + 1)";
                 suspect.Name = "将校◆　　　　　";
@@ -380,7 +380,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 1;
             }
-            else if (dice == 8)
+            else if (i == 8)
             {
                 suspect.Background = "⑧官吏◆(容疑度 - 1)";
                 suspect.Name = "官吏◆　　　　　";
@@ -388,7 +388,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 9)
+            else if (i == 9)
             {
                 suspect.Background = "⑨掃除人(容疑度 + 1)";
                 suspect.Name = "掃除人　　　　";
@@ -396,7 +396,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 10)
+            else if (i == 10)
             {
                 suspect.Background = "⑩溝浚い(容疑度 + 1)";
                 suspect.Name = "溝浚い　　　　　";
@@ -404,7 +404,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 11)
+            else if (i == 11)
             {
                 suspect.Background = "⑪点灯夫(容疑度 + 1)";
                 suspect.Name = "点灯夫　　　　　";
@@ -412,7 +412,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 12)
+            else if (i == 12)
             {
                 suspect.Background = "⑫資産家◆(容疑度 + 1 & 推理基準値 + 5)";
                 suspect.Name = "資産家◆　　　　";
@@ -420,7 +420,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 13)
+            else if (i == 13)
             {
                 suspect.Background = "⑬賭博師(容疑度 + 1)";
                 suspect.Name = "賭博師　　　　　";
@@ -428,7 +428,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 14)
+            else if (i == 14)
             {
                 suspect.Background = "⑭イカサマ師(容疑度 + 2)";
                 suspect.Name = "イカサマ師　　　";
@@ -436,7 +436,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 15)
+            else if (i == 15)
             {
                 suspect.Background = "⑮手品師(推理基準値 + 5)";
                 suspect.Name = "手品師　　　　　";
@@ -444,7 +444,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 16)
+            else if (i == 16)
             {
                 suspect.Background = "⑯こそ泥(容疑度 + 2)";
                 suspect.Name = "こそ泥　　　　　";
@@ -452,7 +452,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 17)
+            else if (i == 17)
             {
                 suspect.Background = "⑰鉱夫(反撃値 + 1)";
                 suspect.Name = "鉱夫　　　　　　";
@@ -460,7 +460,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 1;
             }
-            else if (dice == 18)
+            else if (i == 18)
             {
                 suspect.Background = "⑱教授◆(推理基準値 + 5、容疑度 - 1)";
                 suspect.Name = "教授◆　　　　　";
@@ -468,7 +468,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 19)
+            else if (i == 19)
             {
                 suspect.Background = "⑲貴族◆(容疑度 - 2)";
                 suspect.Name = "貴族◆　　　　　";
@@ -476,7 +476,7 @@ partial class Program
                 suspect.Suspicion = -2;
                 suspect.Counter = 0;
             }
-            else if (dice == 20)
+            else if (i == 20)
             {
                 suspect.Background = "⑳貴族夫人◆(容疑度 - 1)";
                 suspect.Name = "貴族夫人◆　　　";
@@ -484,7 +484,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 21)
+            else if (i == 21)
             {
                 suspect.Background = "㉑水夫(推理基準値 + 5)";
                 suspect.Name = "水夫　　　　　　";
@@ -492,7 +492,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 22)
+            else if (i == 22)
             {
                 suspect.Background = "㉒船長◆(推理基準値 + 10)";
                 suspect.Name = "船長◆　　　　　";
@@ -500,7 +500,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 23)
+            else if (i == 23)
             {
                 suspect.Background = "㉓実業家◆(容疑度 + 1、推理基準値 + 5)";
                 suspect.Name = "実業家◆　　　　";
@@ -508,7 +508,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 24)
+            else if (i == 24)
             {
                 suspect.Background = "㉔パイロット◆(容疑度 - 1、推理基準値 + 5)";
                 suspect.Name = "パイロット◆　　";
@@ -516,7 +516,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 25)
+            else if (i == 25)
             {
                 suspect.Background = "㉕作家(容疑度 - 1、推理基準値 + 10)";
                 suspect.Name = "作家　　　　　　";
@@ -524,7 +524,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 26)
+            else if (i == 26)
             {
                 suspect.Background = "㉖記者(容疑度 - 1、推理基準値 + 5)";
                 suspect.Name = "記者　　　　　　";
@@ -532,7 +532,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 27)
+            else if (i == 27)
             {
                 suspect.Background = "㉗浮浪者(容疑度 + 1、推理 + 5)";
                 suspect.Name = "浮浪者　　　　　";
@@ -540,7 +540,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 28)
+            else if (i == 28)
             {
                 suspect.Background = "㉘元犯罪者(容疑度 + 2、推理 + 10)";
                 suspect.Name = "元犯罪者　　　　";
@@ -548,7 +548,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 29)
+            else if (i == 29)
             {
                 suspect.Background = "㉙暴漢(容疑度 + 1、反撃値 + 2)";
                 suspect.Name = "暴漢　　　　　　";
@@ -556,7 +556,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 2;
             }
-            else if (dice == 30)
+            else if (i == 30)
             {
                 suspect.Background = "㉚使用人(容疑度 + 1)";
                 suspect.Name = "使用人　　　　　";
@@ -564,7 +564,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 31)
+            else if (i == 31)
             {
                 suspect.Background = "㉛使用人長◆(容疑度 + 2)";
                 suspect.Name = "使用人長◆　　　";
@@ -572,7 +572,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 32)
+            else if (i == 32)
             {
                 suspect.Background = "㉜恋人(容疑度 + 1)";
                 suspect.Name = "恋人　　　　　　";
@@ -580,7 +580,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 33)
+            else if (i == 33)
             {
                 suspect.Background = "㉝旧友(容疑度 + 1)";
                 suspect.Name = "旧友　　　　　　";
@@ -588,7 +588,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 34)
+            else if (i == 34)
             {
                 suspect.Background = "㉞相続人(容疑度 + 2)";
                 suspect.Name = "相続人　　　　　";
@@ -596,7 +596,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 35)
+            else if (i == 35)
             {
                 suspect.Background = "㉟医者◆(容疑度 - 1、推理基準値 + 5)";
                 suspect.Name = "医者◆　　　　　";
@@ -604,7 +604,7 @@ partial class Program
                 suspect.Suspicion = -1;
                 suspect.Counter = 0;
             }
-            else if (dice == 36)
+            else if (i == 36)
             {
                 suspect.Background = "㊱金貸し(容疑度 + 1、推理 + 5)";
                 suspect.Name = "金貸し　　　　　";
@@ -612,7 +612,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 37)
+            else if (i == 37)
             {
                 suspect.Background = "㊲マフィア(容疑度 + 1、推理基準値5)";
                 suspect.Name = "マフィア　　　　";
@@ -620,7 +620,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 38)
+            else if (i == 38)
             {
                 suspect.Background = "㊳役者(推理基準値 + 15)";
                 suspect.Name = "役者　　　　　　";
@@ -628,7 +628,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 39)
+            else if (i == 39)
             {
                 suspect.Background = "㊴愛人(容疑度 + 2)";
                 suspect.Name = "愛人　　　　　　";
@@ -636,7 +636,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 40)
+            else if (i == 40)
             {
                 suspect.Background = "㊵霊能者(容疑度 + 1、推理基準値 + 5)";
                 suspect.Name = "霊能者　　　　　";
@@ -644,7 +644,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 41)
+            else if (i == 41)
             {
                 suspect.Background = "㊶芸術家(容疑度 + 1、推理基準値 + 5)";
                 suspect.Name = "芸術家　　　　　";
@@ -652,7 +652,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 42)
+            else if (i == 42)
             {
                 suspect.Background = "㊷同僚(容疑度 + 1)";
                 suspect.Name = "同僚　　　　　　";
@@ -660,7 +660,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 43)
+            else if (i == 43)
             {
                 suspect.Background = "㊸運転手(容疑度 + 1)";
                 suspect.Name = "運転手　　　　　";
@@ -668,7 +668,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 44)
+            else if (i == 44)
             {
                 suspect.Background = "㊹猟師(推理基準値 + 5)";
                 suspect.Name = "猟師　　　　　";
@@ -676,7 +676,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 45)
+            else if (i == 45)
             {
                 suspect.Background = "㊺座長(推理基準値 + 10)";
                 suspect.Name = "座長　　　　　";
@@ -684,7 +684,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 46)
+            else if (i == 46)
             {
                 suspect.Background = "㊻劇場主(推理基準値 + 10)";
                 suspect.Name = "劇場主　　　　";
@@ -692,7 +692,7 @@ partial class Program
                 suspect.Suspicion = 0;
                 suspect.Counter = 0;
             }
-            else if (dice == 47)
+            else if (i == 47)
             {
                 suspect.Background = "㊼マフィアのボス◆(容疑度 + 2、推理基準値 + 10)";
                 suspect.Name = "マフィアのボス◆";
@@ -700,7 +700,7 @@ partial class Program
                 suspect.Suspicion = 2;
                 suspect.Counter = 0;
             }
-            else if (dice == 48)
+            else if (i == 48)
             {
                 suspect.Background = "㊽編集長◆(容疑度 - 2、推理基準値 + 10)";
                 suspect.Name = "編集長◆　　　　";
@@ -709,7 +709,7 @@ partial class Program
                 suspect.Counter = 0;
 
             }
-            else if (dice == 49)
+            else if (i == 49)
             {
                 suspect.Background = "㊾客人(容疑度 + 1)";
                 suspect.Name = "客人　　　　　　";
@@ -717,7 +717,7 @@ partial class Program
                 suspect.Suspicion = 1;
                 suspect.Counter = 0;
             }
-            else if (dice == 50)
+            else if (i == 50)
             {
                 suspect.Background = "㊿奴隷(容疑度 + 2)";
                 suspect.Name = "奴隷　　　　　　";
