@@ -106,9 +106,10 @@ partial class Program
     private async Task Create()
     {
         var createSql = @"CREATE TABLE IF NOT EXISTS stock (
-        id SMALLINT PRIMARY KEY,
-        stock SMALLINT DEFAULT 0,
-        price SMALLINT DEFAULT 0);";
+        id INT PRIMARY KEY,
+        stock INT DEFAULT 0,
+        price INT DEFAULT 0,
+        recount INT DEFAULT 0);";
 
         await ConnectDatabase(createSql);
     }
