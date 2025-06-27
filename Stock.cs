@@ -27,6 +27,9 @@ partial class Program
 
     public async Task StartEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
+        _stock.Clear();
+        _price.Clear();
+
         await ConnectDatabase("SELECT * FROM stock;",
         onResponce: async (reader) =>
         {
