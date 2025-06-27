@@ -105,18 +105,11 @@ partial class Program
 
     private async Task Create()
     {
-        var createSql = @"CREATE TABLE IF NOT EXISTS character_equipment (
-        id TEXT PRIMARY KEY,
-        max_hp SMALLINT DEFAULT 0,
-        max_sp  SMALLINT DEFAULT 0,
-        max_san SMALLINT DEFAULT 0,
-        max_mp SMALLINT DEFAULT 0,
-        hp SMALLINT DEFAULT 0,
-        sp  SMALLINT DEFAULT 0,
-        san SMALLINT DEFAULT 0,
-        mp SMALLINT DEFAULT 0);";
+        var createSql = @"CREATE TABLE IF NOT EXISTS stock (
+        id SMALLINT PRIMARY KEY,
+        stock SMALLINT DEFAULT 0,
+        price SMALLINT DEFAULT 0);";
 
         await ConnectDatabase(createSql);
-
     }
 }
