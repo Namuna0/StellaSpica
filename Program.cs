@@ -91,6 +91,9 @@ partial class Program
             else if (content.StartsWith("?p ")) await PickRoll(message, guild, user);
             else if (content.StartsWith("?pp ")) await PickMultiRoll(message, guild, user);
 
+            // 推理
+            else if (content == "★Reasoning★") await Reasoning(message, guild, user);
+
             // 採取
             else if (content.StartsWith("?gather ")) await Gather(message, guild, user);
             else if (content.StartsWith("?fell ")) await Fell(message, guild, user);
