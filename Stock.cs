@@ -76,7 +76,7 @@ partial class Program
             e = _ms.Next(1, 101) + 20;
             if (diceFix > 0) e = diceFix;
 
-            dice = $"1d100({e - 20})+20 => {e}";
+            dice = $"1d100({e - 20})+20 => {e}" + 20;
             day = "通常";
             if (e < 70) price = "±0%";
             else price = "±10%";
@@ -84,7 +84,7 @@ partial class Program
         else if (_economy == Economy.Recession)
         {
             e = _ms.Next(1, 101) - 30;
-            if (diceFix > 0) e = diceFix;
+            if (diceFix > 0) e = diceFix - 30;
 
             dice = $"1d100({e + 30})-30 => {e}";
             day = "不況";
@@ -93,7 +93,7 @@ partial class Program
         else if (_economy == Economy.Depression)
         {
             e = _ms.Next(1, 101) - 40;
-            if (diceFix > 0) e = diceFix;
+            if (diceFix > 0) e = diceFix - 40;
 
             dice = $"1d100({e + 40})-40 => {e}";
             day = $"恐慌({3 - _recount}日目)";
@@ -102,7 +102,7 @@ partial class Program
         else if (_economy == Economy.GreatDepression)
         {
             e = _ms.Next(1, 101) - 50;
-            if (diceFix > 0) e = diceFix;
+            if (diceFix > 0) e = diceFix - 50;
 
             dice = $"1d100({e + 50})-50 => {e}";
             day = $"大恐慌({3 - _recount}日目)";
@@ -111,7 +111,7 @@ partial class Program
         else if (_economy == Economy.Booming)
         {
             e = _ms.Next(1, 101) + 30;
-            if (diceFix > 0) e = diceFix;
+            if (diceFix > 0) e = diceFix + 30;
 
             dice = $"1d100({e - 30})+30 => {e}";
             day = $"好景気({3 - _recount}日目)";
@@ -120,7 +120,7 @@ partial class Program
         else if (_economy == Economy.Bubble)
         {
             e = _ms.Next(1, 101) + 50;
-            if (diceFix > 0) e = diceFix;
+            if (diceFix > 0) e = diceFix + 50;
 
             dice = $"1d100({e - 50})+50 => {e}";
             day = $"バブル💃({3 - _recount}日目)";

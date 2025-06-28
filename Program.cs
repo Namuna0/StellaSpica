@@ -111,9 +111,9 @@ partial class Program
             {
                 await ShowEconomy(message, guild, user, -1);
             }
-            else if (content.StartsWith("?DiceFixEconomy"))
+            else if (content.StartsWith("?DiceFixEconomy "))
             {
-                var text = message.Content.Substring("?part ".Length);
+                var text = message.Content.Substring("?DiceFixEconomy ".Length);
                 var texts = text.Split(" ");
 
                 await ShowEconomy(message, guild, user, int.Parse(texts[0]));
