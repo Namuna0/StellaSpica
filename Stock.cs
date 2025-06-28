@@ -53,7 +53,7 @@ partial class Program
             var now = DateTime.Now;
             if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
             {
-                await ShowEconomy(message, guild, user);
+                await ShowEconomy(message, guild, user, -1);
 
                 _alreadySent = true;
             }
@@ -64,7 +64,7 @@ partial class Program
         await Task.CompletedTask;
     }
 
-    public async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    public async Task ShowEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user, int diceFix)
     {
         int e = 0;
         string day = "";
@@ -74,6 +74,8 @@ partial class Program
         if (_economy == Economy.Normal)
         {
             e = _ms.Next(1, 101) + 20;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e - 20})+20 => {e}";
             day = "通常";
             if (e < 70) price = "±0%";
@@ -82,6 +84,8 @@ partial class Program
         else if (_economy == Economy.Recession)
         {
             e = _ms.Next(1, 101) - 30;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e + 30})-30 => {e}";
             day = "不況";
             price = "-10%";
@@ -89,6 +93,8 @@ partial class Program
         else if (_economy == Economy.Depression)
         {
             e = _ms.Next(1, 101) - 40;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e + 40})-40 => {e}";
             day = $"恐慌({3 - _recount}日目)";
             price = "-20%";
@@ -96,6 +102,8 @@ partial class Program
         else if (_economy == Economy.GreatDepression)
         {
             e = _ms.Next(1, 101) - 50;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e + 50})-50 => {e}";
             day = $"大恐慌({3 - _recount}日目)";
             price = "-30%";
@@ -103,6 +111,8 @@ partial class Program
         else if (_economy == Economy.Booming)
         {
             e = _ms.Next(1, 101) + 30;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e - 30})+30 => {e}";
             day = $"好景気({3 - _recount}日目)";
             price = "+30%";
@@ -110,6 +120,8 @@ partial class Program
         else if (_economy == Economy.Bubble)
         {
             e = _ms.Next(1, 101) + 50;
+            if (diceFix > 0) e = diceFix;
+
             dice = $"1d100({e - 50})+50 => {e}";
             day = $"バブル💃({3 - _recount}日目)";
             price = "+50%";

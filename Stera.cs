@@ -969,7 +969,7 @@ partial class Program
 
                     stringBuilder2.Append(rand);
 
-                    if (rand >= clear - 6 && rand <= clear)
+                    if (rand >= clear - 5 && rand <= clear)
                     {
                         flag = 1;
                         break;
@@ -984,7 +984,7 @@ partial class Program
                         flag = 2;
                         break;
                     }
-                    else if (count >= 3)
+                    else if (count >= cc)
                     {
                         flag = 3;
                         break;

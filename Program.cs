@@ -109,7 +109,14 @@ partial class Program
             }
             else if (content == "?NextEconomy")
             {
-                await ShowEconomy(message, guild, user);
+                await ShowEconomy(message, guild, user, -1);
+            }
+            else if (content.StartsWith("?DiceFixEconomy"))
+            {
+                var text = message.Content.Substring("?part ".Length);
+                var texts = text.Split(" ");
+
+                await ShowEconomy(message, guild, user, int.Parse(texts[0]));
             }
             else if (content == "?GetTime")
             {
