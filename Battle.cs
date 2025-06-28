@@ -780,7 +780,7 @@ partial class Program
         $"1t目{_ms.Next(1, 4)}:\r\n" +
         "―――――\r\n" +
         "被害者(殺人:1人/連続殺人:2d5人)\r\n" +
-        $"{}名" +
+        $"{victim}名" +
         "```";
 
         await message.Channel.SendMessageAsync(result);
