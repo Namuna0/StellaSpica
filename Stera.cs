@@ -1018,7 +1018,7 @@ partial class Program
                     result += (int)(rate * gold);
                     b++;
                 }
-                else if (count < 3)
+                else if (count < cc)
                 {
                     view[i] = "【失敗】";
                     result -= miss; 
