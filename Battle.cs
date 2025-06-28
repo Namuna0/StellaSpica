@@ -312,15 +312,18 @@ partial class Program
         var crime = "";
         int crimeCounter = 0;
         dice = _ms.Next(1, 3);
+        int victim = 0;
         if (dice == 1)
         {
             crime = "1：殺人（犯人の反撃値+1）";
             crimeCounter = 1;
+            victim = 1;
         }
         else if (dice == 2)
         {
             crime = "2：連続殺人（犯人の反撃値+2）";
             crimeCounter = 2;
+            victim = _ms.Next(1, 6) + _ms.Next(1, 6);
         }
 
         var suspects = _ms.Next(1, 4) + _ms.Next(1, 4) + 5 + stageSuspectCount;
@@ -735,12 +738,13 @@ partial class Program
         for (var i = 0; i < suspects; i++)
         {
             var suspect = suspectList[_ms.Next(0, suspects)];
+            suspectList.Remove(suspect);
 
             int suspiction = suspect.Suspicion + stageSuspicion + dateSuspicion;
             int counter = suspect.Counter + crimeCounter;
             int inference = suspect.Inference + stageInference + dateInference;
 
-            sb.Append($" {index.ToString().PadLeft(2, ' ')}｜{suspect.Name}｜{suspect.Suspicion.ToString().PadLeft(2, ' ')}｜{suspect.Counter.ToString().PadLeft(2, ' ')}｜{suspect.Inference.ToString().PadLeft(2, ' ')}｜0  \r\n");
+            sb.Append($" {index.ToString().PadLeft(2, ' ')}｜{suspect.Name}｜{suspiction.ToString().PadLeft(2, ' ')}｜{counter.ToString().PadLeft(2, ' ')}｜{inference.ToString().PadLeft(2, ' ')}｜0  \r\n");
 
             index++;
         }
@@ -773,10 +777,10 @@ partial class Program
         "\r\n" +
         "―――――\r\n" +
         "容疑度付与(1d3)\r\n" +
-        "1t目:\r\n" +
+        $"1t目{_ms.Next(1, 4)}:\r\n" +
         "―――――\r\n" +
         "被害者(殺人:1人/連続殺人:2d5人)\r\n" +
-        "-名" +
+        $"{}名" +
         "```";
 
         await message.Channel.SendMessageAsync(result);
