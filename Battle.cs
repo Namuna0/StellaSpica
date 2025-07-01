@@ -254,7 +254,7 @@ partial class Program
         int stageSuspicion = 0;
 
         int dice = _ms.Next(1, 7);
-        if (dice == 1) stage = "1：朝（なにもなし）";
+        if (dice == 1) stage = "1：洋館（なにもなし）";
         else if (dice == 2)
         {
             stage = "2：庭園（容疑者数+1）";
@@ -284,7 +284,7 @@ partial class Program
         dice = _ms.Next(1, 6);
         if (dice == 1)
         {
-            date = "1：洋館（なにもなし）";
+            date = "1：朝（なにもなし）";
         }
         else if (dice == 2)
         {
