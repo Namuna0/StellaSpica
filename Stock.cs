@@ -43,6 +43,11 @@ partial class Program
                 _stock.AddLast(stock);
                 _price.AddLast(price);
 
+                if (_stock.Count > 25)
+                {
+                    _stock.RemoveFirst();
+                    _price.RemoveFirst();
+                }
             } while (reader.Read());
 
             await Task.CompletedTask;
@@ -134,17 +139,17 @@ partial class Program
                 if (e <= 40)
                 {
                     _economy = Economy.Recession;
-                    _recount = 0;
+                    _recount = 1;
                 }
                 else if (e >= 100)
                 {
                     _economy = Economy.Booming;
-                    _recount = 2;
+                    _recount = 3;
                 }
                 else
                 {
                     _economy = Economy.Normal;
-                    _recount = 0;
+                    _recount = 1;
                 }
             }
             else if (_economy == Economy.Recession)
@@ -152,17 +157,17 @@ partial class Program
                 if (e <= 30)
                 {
                     _economy = Economy.Depression;
-                    _recount = 2;
+                    _recount = 3;
                 }
                 else if (e >= 60)
                 {
                     _economy = Economy.Normal;
-                    _recount = 0;
+                    _recount = 1;
                 }
                 else
                 {
                     _economy = Economy.Recession;
-                    _recount = 0;
+                    _recount = 1;
                 }
             }
             else if (_economy == Economy.Depression)
@@ -170,17 +175,17 @@ partial class Program
                 if (e <= 20)
                 {
                     _economy = Economy.GreatDepression;
-                    _recount = 2;
+                    _recount = 3;
                 }
                 else if (e >= 35)
                 {
                     _economy = Economy.Normal;
-                    _recount = 0;
+                    _recount = 1;
                 }
                 else
                 {
                     _economy = Economy.Depression;
-                    _recount = 2;
+                    _recount = 3;
                 }
             }
             else if (_economy == Economy.GreatDepression)
@@ -188,12 +193,12 @@ partial class Program
                 if (e >= 30)
                 {
                     _economy = Economy.Normal;
-                    _recount = 0;
+                    _recount = 1;
                 }
                 else
                 {
                     _economy = Economy.GreatDepression;
-                    _recount = 2;
+                    _recount = 3;
                 }
             }
             else if (_economy == Economy.Booming)
@@ -201,29 +206,30 @@ partial class Program
                 if (e <= 70)
                 {
                     _economy = Economy.Depression;
-                    _recount = 2;
+                    _recount = 3;
                 }
                 else if (e >= 120)
                 {
                     _economy = Economy.Bubble;
-                    _recount = 2;
+                    _recount = 1;
                 }
-                else
+                else if (_recount <= -3)
                 {
                     _economy = Economy.Normal;
-                    _recount = 0;
+                    _recount = 1;
                 }
             }
             else if (_economy == Economy.Bubble)
             {
-                _economy = Economy.Normal;
-                _recount = 0;
+                if (_recount <= -3)
+                {
+                    _economy = Economy.Normal;
+                    _recount = 1;
+                }
             }
         }
-        else
-        {
-            _recount--;
-        }
+
+        _recount--;
 
         string day2 = "";
 
@@ -249,7 +255,7 @@ partial class Program
         }
         else if (_economy == Economy.Bubble)
         {
-            day2 = $"バブル💃({3 - _recount}日目)";
+            day2 = $"バブル💃({1 - _recount}日目)";
         }
 
         _stock.AddLast(e);
