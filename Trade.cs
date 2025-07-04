@@ -14,7 +14,7 @@ partial class Program
             var now = DateTime.Now;
             if (now.Hour == 15 && now.Minute == 0 && !_alreadySent2)
             {
-                await ShowEconomy(message, guild, user, -1);
+                await ShowTrade(message, guild, user);
 
                 _alreadySent2 = true;
             }
@@ -45,7 +45,7 @@ partial class Program
         };
 
         // 列ごとの幅（最大文字数×フォント幅、などで調整してもOK）
-        int[] colWidths = { 80, 80, 80, 80, 80, 80, 80 };
+        int[] colWidths = { 120, 120, 120, 120, 120, 120, 120 };
         int rowHeight = 40;
         int width = colWidths.Sum() + (colWidths.Length + 1) * 2;
         int height = rowHeight * data.Length + (data.Length + 1) * 2;
