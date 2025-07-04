@@ -111,6 +111,14 @@ partial class Program
             {
                 await ShowEconomy(message, guild, user, -1);
             }
+            else if (content == "?StartTrade")
+            {
+                await StartTrade(message, guild, user);
+            }
+            else if (content == "?NextTrade")
+            {
+                await ShowTrade(message, guild, user);
+            }
             else if (content.StartsWith("?DiceFixEconomy "))
             {
                 var text = message.Content.Substring("?DiceFixEconomy ".Length);

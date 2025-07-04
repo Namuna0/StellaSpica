@@ -283,7 +283,6 @@ partial class Program
     private async Task ShowGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
     {
         var plt = new Plot();
-
         plt.Font.Set("Noto Sans CJK JP");
 
         var s1 = plt.Add.Scatter(_xs, _stock.ToArray());
