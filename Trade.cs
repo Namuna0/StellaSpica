@@ -1,7 +1,4 @@
-﻿using Discord;
-using Discord.WebSocket;
-using HarfBuzzSharp;
-using ScottPlot;
+﻿using Discord.WebSocket;
 using SkiaSharp;
 
 partial class Program
@@ -9,48 +6,19 @@ partial class Program
     private Timer _midnightChecker2;
     private bool _alreadySent2 = false;
 
-   // private int _stockCount;
-  //  private int _recount = 0;
-
 
     public async Task StartTrade(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        _stock.Clear();
-        _price.Clear();
-
-        await ConnectDatabase("SELECT * FROM stock;",
-        onResponce: async (reader) =>
-        {
-            do
-            {
-                _stockCount = reader.GetInt32(reader.GetOrdinal("id"));
-                var stock = reader.GetInt32(reader.GetOrdinal("stock"));
-                var price = reader.GetInt32(reader.GetOrdinal("price"));
-                _recount = reader.GetInt32(reader.GetOrdinal("recount"));
-
-                _stock.AddLast(stock);
-                _price.AddLast(price);
-
-                if (_stock.Count > 25)
-                {
-                    _stock.RemoveFirst();
-                    _price.RemoveFirst();
-                }
-            } while (reader.Read());
-
-            await Task.CompletedTask;
-        });
-
-        _midnightChecker = new Timer(async _ =>
+        _midnightChecker2 = new Timer(async _ =>
         {
             var now = DateTime.Now;
-            if (now.Hour == 15 && now.Minute == 0 && !_alreadySent)
+            if (now.Hour == 15 && now.Minute == 0 && !_alreadySent2)
             {
                 await ShowEconomy(message, guild, user, -1);
 
-                _alreadySent = true;
+                _alreadySent2 = true;
             }
-            if (now.Minute != 0) _alreadySent = false;
+            if (now.Minute != 0) _alreadySent2 = false;
 
         }, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
@@ -59,22 +27,25 @@ partial class Program
 
     public async Task ShowTrade(SocketMessage message, SocketGuild guild, SocketGuildUser user)
     {
-        await ShowGraph2(message);
-    }
-    
-    private async Task ShowGraph2(SocketMessage message)
-    {
         // 例: テーブルデータ
         string[][] data =
         {
-            new string[] { "名前", "年齢", "点数" },
-            new string[] { "山田", "22", "89" },
-            new string[] { "佐藤", "21", "95" },
-            new string[] { "鈴木", "23", "78" }
+            new string[] { "", "AIL", "AME", "LLL", "INA", "RUZ", "N. U" },
+            new string[] { "衣類", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "酒類", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "機械", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "資源", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "武器", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "装飾", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "食料", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "書籍", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "絵画", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "宝石", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "ギャング", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×" },
         };
 
         // 列ごとの幅（最大文字数×フォント幅、などで調整してもOK）
-        int[] colWidths = { 100, 80, 80 };
+        int[] colWidths = { 80, 80, 80, 80, 80, 80, 80 };
         int rowHeight = 40;
         int width = colWidths.Sum() + (colWidths.Length + 1) * 2;
         int height = rowHeight * data.Length + (data.Length + 1) * 2;
@@ -127,7 +98,7 @@ partial class Program
             dataStream.SaveTo(fileStream);
         }
 
-        await message.Channel.SendMessageAsync("み");
+        await message.Channel.SendMessageAsync("ノクターン - 国際情勢");
         await message.Channel.SendFileAsync("table.png");
     }
 }
