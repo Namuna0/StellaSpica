@@ -127,6 +127,7 @@ partial class Program
             dataStream.SaveTo(fileStream);
         }
 
-        await message.Channel.SendFileAsync("ncse_sample2.png");
+        await message.Channel.SendMessageAsync("み");
+        await message.Channel.SendFileAsync("table.png");
     }
 }
