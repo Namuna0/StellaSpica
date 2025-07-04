@@ -8,7 +8,7 @@ partial class Program
     private bool _alreadySent = false;
 
     private int _stockCount;
-    private int _recount = 0;
+    private int _recount = -3;
     private LinkedList<int> _stock = new LinkedList<int>();
     private LinkedList<int> _price = new LinkedList<int>();
 
@@ -198,7 +198,6 @@ partial class Program
                 else
                 {
                     _economy = Economy.GreatDepression;
-                    _recount = 3;
                 }
             }
             else if (_economy == Economy.Booming)
