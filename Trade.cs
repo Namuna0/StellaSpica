@@ -12,7 +12,7 @@ partial class Program
         _midnightChecker2 = new Timer(async _ =>
         {
             var now = DateTime.Now;
-            if (now.Hour == 15 && now.Minute == 0 && !_alreadySent2)
+            if ((now.Hour == 3 || now.Hour == 15) && now.Minute == 0 && !_alreadySent2)
             {
                 await ShowTrade(message, guild, user);
 
@@ -41,7 +41,7 @@ partial class Program
             new string[] { "書籍", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
             new string[] { "絵画", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
             new string[] { "宝石", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "ギャング", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×", _ms.Next(1, 101) <= 30 ? "○" : "×" },
+            new string[] { "ギャング", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×" },
         };
 
         // 列ごとの幅（最大文字数×フォント幅、などで調整してもOK）
