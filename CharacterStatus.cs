@@ -104,9 +104,9 @@ partial class Program
             $"属性:{NextElement()} or {NextElement()}\r\n" +
             "人種:\r\n" +
             "[過去]\r\n" +
-            $"0章:{NextPast0()} or {NextPast0()} or {NextPast0()}\r\n" +
-            $"1章:{NextPast1()} or {NextPast1()} or {NextPast1()}\r\n" +
-            $"2章:{NextPast2()} or {NextPast2()} or {NextPast2()}\r\n" +
+            $"0章:{past0A} or {past0B} or {past0C}\r\n" +
+            $"1章:{past1A} or {past1B} or {past1C}\r\n" +
+            $"2章:{past2A} or {past2B} or {past2C}\r\n" +
             repast0 +
             repast1 +
             repast2 +
