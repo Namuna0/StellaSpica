@@ -81,7 +81,7 @@ partial class Program
             e = _ms.Next(1, 101) + 20;
             if (diceFix > 0) e = diceFix;
 
-            dice = $"1d100({e - 20})+20 => {e}" + 20;
+            dice = $"1d100({e - 20})+20 => {e}";
             day = "通常";
             if (e < 70) price = "±0%";
             else price = "±10%";
