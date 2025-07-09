@@ -8,7 +8,7 @@ partial class Program
     private bool _alreadySent = false;
 
     private int _stockCount;
-    private int _recount = -3;
+    private int _recount = 0;
     private LinkedList<int> _stock = new LinkedList<int>();
     private LinkedList<int> _price = new LinkedList<int>();
 
@@ -21,7 +21,7 @@ partial class Program
         Booming,
         Bubble
     }
-    private Economy _economy = Economy.GreatDepression;
+    private Economy _economy = Economy.Normal;
 
     private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
