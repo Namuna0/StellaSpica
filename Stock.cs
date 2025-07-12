@@ -21,7 +21,7 @@ partial class Program
         Booming,
         Bubble
     }
-    private Economy _economy = Economy.Normal;
+    private Economy _economy = Economy.Booming;
 
     private double[] _xs = { 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
@@ -84,7 +84,7 @@ partial class Program
             dice = $"1d100({e - 20})+20 => {e}";
             day = "通常";
             if (e < 70) price = "±0%";
-            else price = "±10%";
+            else price = "±0%";
         }
         else if (_economy == Economy.Recession)
         {
