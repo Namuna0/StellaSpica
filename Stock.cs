@@ -202,12 +202,7 @@ partial class Program
             }
             else if (_economy == Economy.Booming)
             {
-                if (e <= 70)
-                {
-                    _economy = Economy.Depression;
-                    _recount = 3;
-                }
-                else if (e >= 120)
+                if (e >= 120)
                 {
                     _economy = Economy.Bubble;
                     _recount = 1;
@@ -220,7 +215,12 @@ partial class Program
             }
             else if (_economy == Economy.Bubble)
             {
-                if (_recount <= -3)
+                if (e <= 70)
+                {
+                    _economy = Economy.Depression;
+                    _recount = 3;
+                }
+                else if (_recount <= -3)
                 {
                     _economy = Economy.Normal;
                     _recount = 1;
