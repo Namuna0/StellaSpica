@@ -111,6 +111,6 @@ partial class Program
         price INT DEFAULT 0,
         recount INT DEFAULT 0);";
 
-        await ConnectDatabase(createSql);
+       // await ConnectDatabase(createSql);
     }
 }
