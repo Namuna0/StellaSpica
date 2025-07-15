@@ -101,7 +101,7 @@ partial class Program
             if (diceFix > 0) e = diceFix - 40;
 
             dice = $"1d100({e + 40})-40 => {e}";
-            day = $"恐慌({3 - _recount}日目)";
+            day = $"恐慌({_recount}日目)";
             price = "-20%";
         }
         else if (_economy == Economy.GreatDepression)
@@ -110,7 +110,7 @@ partial class Program
             if (diceFix > 0) e = diceFix - 50;
 
             dice = $"1d100({e + 50})-50 => {e}";
-            day = $"大恐慌({3 - _recount}日目)";
+            day = $"大恐慌({_recount}日目)";
             price = "-30%";
         }
         else if (_economy == Economy.Booming)
@@ -119,7 +119,7 @@ partial class Program
             if (diceFix > 0) e = diceFix + 30;
 
             dice = $"1d100({e - 30})+30 => {e}";
-            day = $"好景気({3 - _recount}日目)";
+            day = $"好景気({_recount}日目)";
             price = "+30%";
         }
         else if (_economy == Economy.Bubble)
@@ -128,107 +128,88 @@ partial class Program
             if (diceFix > 0) e = diceFix + 50;
 
             dice = $"1d100({e - 50})+50 => {e}";
-            day = $"バブル💃({3 - _recount}日目)";
+            day = $"バブル💃({_recount}日目)";
             price = "+50%";
         }
 
-        if (_recount <= 0)
+        if (_economy == Economy.Normal)
         {
-            if (_economy == Economy.Normal)
+            if (e <= 40)
             {
-                if (e <= 40)
-                {
-                    _economy = Economy.Recession;
-                    _recount = 1;
-                }
-                else if (e >= 100)
-                {
-                    _economy = Economy.Booming;
-                    _recount = 3;
-                }
-                else
-                {
-                    _economy = Economy.Normal;
-                    _recount = 1;
-                }
+                _economy = Economy.Recession;
+                _recount = 0;
             }
-            else if (_economy == Economy.Recession)
+            else if (e >= 100)
             {
-                if (e <= 30)
-                {
-                    _economy = Economy.Depression;
-                    _recount = 3;
-                }
-                else if (e >= 60)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 1;
-                }
-                else
-                {
-                    _economy = Economy.Recession;
-                    _recount = 1;
-                }
+                _economy = Economy.Booming;
+                _recount = 0;
             }
-            else if (_economy == Economy.Depression)
+        }
+        else if (_economy == Economy.Recession)
+        {
+            if (e <= 30)
+            {
+                _economy = Economy.Depression;
+                _recount = 0;
+            }
+            else if (e >= 60)
+            {
+                _economy = Economy.Normal;
+                _recount = 0;
+            }
+        }
+        else if (_economy == Economy.Depression)
+        {
+            if (_recount >= 3)
             {
                 if (e <= 20)
                 {
                     _economy = Economy.GreatDepression;
-                    _recount = 3;
+                    _recount = 0;
                 }
                 else if (e >= 35)
                 {
                     _economy = Economy.Normal;
-                    _recount = 1;
-                }
-                else
-                {
-                    _economy = Economy.Depression;
-                    _recount = 3;
-                }
-            }
-            else if (_economy == Economy.GreatDepression)
-            {
-                if (e >= 30)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 1;
-                }
-                else
-                {
-                    _economy = Economy.GreatDepression;
-                }
-            }
-            else if (_economy == Economy.Booming)
-            {
-                if (e >= 120)
-                {
-                    _economy = Economy.Bubble;
-                    _recount = 1;
-                }
-                else if (_recount <= -3)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 1;
-                }
-            }
-            else if (_economy == Economy.Bubble)
-            {
-                if (e <= 70)
-                {
-                    _economy = Economy.Depression;
-                    _recount = 3;
-                }
-                else if (_recount <= -3)
-                {
-                    _economy = Economy.Normal;
-                    _recount = 1;
+                    _recount = 0;
                 }
             }
         }
+        else if (_economy == Economy.GreatDepression)
+        {
+            if (_recount >= 3 && e >= 30)
+            {
+                _economy = Economy.Normal;
+                _recount = 0;
+            }
+        }
+        else if (_economy == Economy.Booming)
+        {
+            if (e >= 120)
+            {
+                _economy = Economy.Bubble;
+                _recount = 0;
+            }
+            else if (_recount >= 3)
+            {
+                _economy = Economy.Normal;
+                _recount = 0;
+            }
+        }
+        else if (_economy == Economy.Bubble)
+        {
+            if (e <= 70)
+            {
+                _economy = Economy.Depression;
+                _recount = 0;
+            }
+            else if (_recount >= 3)
+            {
+                _economy = Economy.Normal;
+                _recount = 0;
+            }
+        }
 
-        _recount--;
+        _recount++;
 
         string day2 = "";
 
@@ -242,19 +223,19 @@ partial class Program
         }
         else if (_economy == Economy.Depression)
         {
-            day2 = $"恐慌({3 - _recount}日目)";
+            day2 = $"恐慌({_recount}日目)";
         }
         else if (_economy == Economy.GreatDepression)
         {
-            day2 = $"大恐慌({3 - _recount}日目)";
+            day2 = $"大恐慌({_recount}日目)";
         }
         else if (_economy == Economy.Booming)
         {
-            day2 = $"好景気({3 - _recount}日目)";
+            day2 = $"好景気({_recount}日目)";
         }
         else if (_economy == Economy.Bubble)
         {
-            day2 = $"バブル💃({1 - _recount}日目)";
+            day2 = $"バブル💃({_recount}日目)";
         }
 
         _stock.AddLast(e);
