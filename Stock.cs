@@ -160,7 +160,7 @@ partial class Program
         }
         else if (_economy == Economy.Depression)
         {
-            if (_recount >= 3)
+            if (_recount >= 2)
             {
                 if (e <= 20)
                 {
@@ -176,7 +176,7 @@ partial class Program
         }
         else if (_economy == Economy.GreatDepression)
         {
-            if (_recount >= 3 && e >= 30)
+            if (_recount >= 2 && e >= 30)
             {
                 _economy = Economy.Normal;
                 _recount = 0;
@@ -189,7 +189,7 @@ partial class Program
                 _economy = Economy.Bubble;
                 _recount = 0;
             }
-            else if (_recount >= 3)
+            else if (_recount >= 2)
             {
                 _economy = Economy.Normal;
                 _recount = 0;
@@ -202,7 +202,7 @@ partial class Program
                 _economy = Economy.Depression;
                 _recount = 0;
             }
-            else if (_recount >= 3)
+            else if (_recount >= 2)
             {
                 _economy = Economy.Normal;
                 _recount = 0;
