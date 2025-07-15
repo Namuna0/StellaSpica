@@ -364,7 +364,7 @@ partial class Program
                 }
                 else if (texts[0] == "ウェストキャニオン")
                 {
-                     if (rand >= 51 && rand <= 100) item[1] += _ms.Next(1, 4);
+                    if (rand >= 51 && rand <= 100) item[1] += _ms.Next(1, 4);
                 }
                 else if (texts[0] == "森林地帯")
                 {
@@ -406,7 +406,7 @@ partial class Program
             else if (texts[0] == "妖精の森")
             {
                 area = "🌲妖精の森（Lv4〜）\r\n【伐採《1d100》1-50：何もなし/51-95：ブナ材/96-100：妖精樹の枝】\r\n";
-               
+
                 if (item[1] > 0) stringBuilder3.Append($",ブナ材×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",妖精樹の枝×{item[2]}");
             }
@@ -1002,7 +1002,7 @@ partial class Program
                     result += (int)(rate * gold);
                     b += 2;
                 }
-                else if(flag == 4 && (texts[0] == "ホストクラブ" || texts[0] == "オカマバー"))
+                else if (flag == 4 && (texts[0] == "ホストクラブ" || texts[0] == "オカマバー"))
                 {
                     view[i] = "【100ファンブル死亡】";
                     result -= miss * 2;
@@ -1021,7 +1021,7 @@ partial class Program
                 else if (count < cc)
                 {
                     view[i] = "【失敗】";
-                    result -= miss; 
+                    result -= miss;
                 }
 
                 stringBuilder.Append($"{view[i]}{stringBuilder2}\r\n");
