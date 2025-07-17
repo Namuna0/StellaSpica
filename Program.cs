@@ -130,6 +130,14 @@ partial class Program
             {
                 await A(message, guild, user);
             }
+            else if (content == "?cake")
+            {
+                await message.Channel.SendMessageAsync("https://i.gyazo.com/6b031a49227c6a9533d2dff7cfa9e8e8.jpg");
+            }
+            else if (content == "?tea")
+            {
+                await message.Channel.SendMessageAsync("https://gyazo.com/b9ea98e0a0923611058344020cebcad7");
+            }
         }
     }
 
