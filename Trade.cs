@@ -31,16 +31,16 @@ partial class Program
         string[][] data =
         {
             new string[] { "", "AIL", "AME", "LLL", "INA", "RUZ", "N. U" },
-            new string[] { "衣類", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "酒類", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "機械", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "資源", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "武器", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "装飾", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "食料", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "書籍", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "絵画", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
-            new string[] { "宝石", _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString(), _ms.Next(1, 301).ToString() },
+            new string[] { "衣類", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "酒類", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "機械", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "資源", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "武器", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "装飾", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "食料", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "書籍", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "絵画", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
+            new string[] { "宝石", (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString(), (50 + _ms.Next(1, 251)).ToString() },
             new string[] { "ギャング", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×", _ms.Next(1, 101) > 30 ? "○" : "×" },
         };
 
