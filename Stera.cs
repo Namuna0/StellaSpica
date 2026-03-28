@@ -911,7 +911,7 @@ partial class Program
                 cc = 3;
                 gold = 100;
                 miss = 50;
-                avi = "知力";
+                avi = "精神";
             }
             else if (texts[0] == "農作業の手伝い〈ブドウ園〉")
             {
