@@ -232,13 +232,13 @@ partial class Program
             }
             else if (texts[0] == "南方の砂浜")
             {
-                area = "🌴南方の砂浜（Lv2から利用可能）\r\n【採取《1d100》1-30：雑草/31-40：綺麗な砂/41-59：サトウキビ/60-70：海藻/71-80：木材（流木）/81-90：えび/91-100：カカオ】\r\n";
+                area = "🌴南方の砂浜（Lv2から利用可能）\r\n【採取《1d100》1-30：雑草/31-40：綺麗な砂/41-59：サトウキビ/60-70：海藻/71-80：貝殻/81-90：えび/91-100：カカオ】\r\n";
 
                 if (item[0] > 0) stringBuilder3.Append($",雑草×{item[0]}");
                 if (item[1] > 0) stringBuilder3.Append($",綺麗な砂×{item[1]}");
                 if (item[2] > 0) stringBuilder3.Append($",サトウキビ×{item[2]}");
                 if (item[3] > 0) stringBuilder3.Append($",海藻{item[3]}");
-                if (item[4] > 0) stringBuilder3.Append($",木材（流木）×{item[4]}");
+                if (item[4] > 0) stringBuilder3.Append($",貝殻×{item[4]}");
                 if (item[5] > 0) stringBuilder3.Append($",えび×{item[5]}");
                 if (item[6] > 0) stringBuilder3.Append($",カカオ×{item[6]}");
             }
@@ -603,12 +603,13 @@ partial class Program
                 }
                 else if (texts[0] == "台地の採掘場")
                 {
-                    if (rand >= 1 && rand <= 40) item[0]++;
-                    else if (rand >= 41 && rand <= 50) item[1]++;
-                    else if (rand >= 51 && rand <= 71) item[2]++;
-                    else if (rand >= 72 && rand <= 80) item[3]++;
-                    if (rand >= 80 && rand <= 89) item[4]++;
-                    else if (rand >= 90 && rand <= 100) item[5]++;
+                    if (rand >= 1 && rand <= 30) item[0]++;
+                    else if (rand >= 31 && rand <= 40) item[1]++;
+                    else if (rand >= 41 && rand <= 50) item[2]++;
+                    else if (rand >= 51 && rand <= 71) item[3]++;
+                    else if (rand >= 72 && rand <= 80) item[4]++;
+                    if (rand >= 80 && rand <= 89) item[5]++;
+                    else if(rand >= 90 && rand <= 100) item[6]++;
                 }
                 else
                 {
@@ -750,14 +751,15 @@ partial class Program
             }
             else if (texts[0] == "台地の採掘場")
             {
-                area = "🏔台地の採掘場（Lv4から利用可能）\r\n【《1d100》1-40：石ころ/41-50：亜鉛の破片/51-71：鉄の破片/72-80：銅の破片/80-89：銀の破片/90-100：チタンの破片】\r\n";
+                area = "🏔台地の採掘場（Lv4から利用可能）\r\n【《1d100》1-30：石ころ/31-40：輝水鉛鉱/41-50：亜鉛の破片/51-71：鉄の破片/72-80：銅の破片/80-89：銀の破片/90-100：チタンの破片】\r\n";
 
                 if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
-                if (item[1] > 0) stringBuilder3.Append($",亜鉛の破片×{item[1]}");
-                if (item[2] > 0) stringBuilder3.Append($",鉄の破片×{item[2]}");
-                if (item[3] > 0) stringBuilder3.Append($",銅の破片×{item[3]}");
-                if (item[4] > 0) stringBuilder3.Append($",銀の破片×{item[4]}");
-                if (item[5] > 0) stringBuilder3.Append($",チタンの破片×{item[5]}");
+                if (item[1] > 0) stringBuilder3.Append($",輝水鉛鉱×{item[1]}");
+                if (item[2] > 0) stringBuilder3.Append($",亜鉛の破片×{item[2]}");
+                if (item[3] > 0) stringBuilder3.Append($",鉄の破片×{item[3]}");
+                if (item[4] > 0) stringBuilder3.Append($",銅の破片×{item[4]}");
+                if (item[5] > 0) stringBuilder3.Append($",銀の破片×{item[5]}");
+                if (item[6] > 0) stringBuilder3.Append($",チタンの破片×{item[6]}");
             }
 
             await message.Channel.SendMessageAsync(
