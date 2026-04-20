@@ -8,7 +8,7 @@ partial class Program
     private bool _alreadySent = false;
 
     private int _stockCount;
-    private int _recount = 2;
+    private int _recount = 1;
     private LinkedList<int> _stock = new LinkedList<int>();
     private LinkedList<int> _price = new LinkedList<int>();
 
