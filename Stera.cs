@@ -594,12 +594,13 @@ partial class Program
                 }
                 else if (texts[0] == "山中の坑道")
                 {
-                    if (rand >= 1 && rand <= 40) item[0]++;
-                    else if (rand >= 41 && rand <= 50) item[1]++;
-                    else if (rand >= 51 && rand <= 70) item[2]++;
-                    else if (rand >= 71 && rand <= 80) item[3]++;
-                    else if (rand >= 81 && rand <= 90) item[4]++;
-                    else if (rand >= 91 && rand <= 100) item[5]++;
+                    if (rand >= 1 && rand <= 30) item[0]++;
+                    else if (rand >= 31 && rand <= 40) item[1]++;
+                    else if (rand >= 41 && rand <= 50) item[2]++;
+                    else if (rand >= 51 && rand <= 70) item[3]++;
+                    else if (rand >= 71 && rand <= 80) item[4]++;
+                    else if (rand >= 81 && rand <= 90) item[5]++;
+                    else if (rand >= 91 && rand <= 100) item[6]++;
                 }
                 else if (texts[0] == "台地の採掘場")
                 {
@@ -740,14 +741,15 @@ partial class Program
             }
             else if (texts[0] == "山中の坑道")
             {
-                area = "🏔山中の坑道（Lv3から利用可能）\r\n【《1d100》1-40：石ころ/41-50：鉛の破片/51-70：錫の破片/71-80：石炭/81-90：銅の破片/91-100：銀の破片】\r\n";
+                area = "🏔山中の坑道（Lv3から利用可能）\r\n【《1d100》1-30：石ころ/31-40：ニッケルの破片/41-50：鉛の破片/51-70：錫の破片/71-80：石炭/81-90：銅の破片/91-100：銀の破片】\r\n";
 
                 if (item[0] > 0) stringBuilder3.Append($",石ころ×{item[0]}");
-                if (item[1] > 0) stringBuilder3.Append($",鉛の破片×{item[1]}");
-                if (item[2] > 0) stringBuilder3.Append($",錫の破片×{item[2]}");
-                if (item[3] > 0) stringBuilder3.Append($",石炭×{item[3]}");
-                if (item[4] > 0) stringBuilder3.Append($",銅の破片×{item[4]}");
-                if (item[5] > 0) stringBuilder3.Append($",銀の破片×{item[5]}");
+                if (item[1] > 0) stringBuilder3.Append($",ニッケルの破片×{item[1]}");
+                if (item[2] > 0) stringBuilder3.Append($",鉛の破片×{item[2]}");
+                if (item[3] > 0) stringBuilder3.Append($",錫の破片×{item[3]}");
+                if (item[4] > 0) stringBuilder3.Append($",石炭×{item[4]}");
+                if (item[5] > 0) stringBuilder3.Append($",銅の破片×{item[5]}");
+                if (item[6] > 0) stringBuilder3.Append($",銀の破片×{item[6]}");
             }
             else if (texts[0] == "台地の採掘場")
             {
