@@ -167,16 +167,19 @@ partial class Program
     {
         int random = _ms.Next(1, 101);
 
-        if (random >= 1 && random <= 9) return "地属性";
-        else if (random >= 10 && random <= 19) return "花属性";
-        else if (random >= 20 && random <= 29) return "雪属性";
-        else if (random >= 30 && random <= 39) return "氷属性";
-        else if (random >= 40 && random <= 49) return "水属性";
-        else if (random >= 50 && random <= 59) return "風属性";
-        else if (random >= 60 && random <= 69) return "炎属性";
-        else if (random >= 70 && random <= 79) return "雷属性";
-        else if (random >= 80 && random <= 89) return "光属性";
-        else if (random >= 90 && random <= 99) return "夜属性";
+        if (random >= 1 && random <= 8) return "地属性";
+        else if (random >= 9 && random <= 16) return "氷属性";
+        else if (random >= 17 && random <= 24) return "水属性";
+        else if (random >= 25 && random <= 32) return "風属性";
+        else if (random >= 33 && random <= 40) return "炎属性";
+        else if (random >= 41 && random <= 48) return "雷属性";
+        else if (random >= 49 && random <= 55) return "雪属性";
+        else if (random >= 56 && random <= 62) return "花属性";
+        else if (random >= 63 && random <= 70) return "鉱属性";
+        else if (random >= 71 && random <= 78) return "暗属性";
+        else if (random >= 79 && random <= 85) return "光属性";
+        else if (random >= 86 && random <= 92) return "夜属性";
+        else if (random >= 93 && random <= 99) return "空属性";
         else return "双属性";
     }
 
