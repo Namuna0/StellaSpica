@@ -270,7 +270,7 @@ partial class Program
         _economy = Economy.GreatDepression;
 
         string comment = string.Empty;
-        if (texts.Length > 1)
+        if (texts.Length > 0)
         {
             _economy = (Economy)int.Parse(texts[0]);
         }
