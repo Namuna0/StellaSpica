@@ -111,6 +111,10 @@ partial class Program
             {
                 await ShowEconomy(message, guild, user, -1);
             }
+            else if (content == "?SetEconomy")
+            {
+                await SetEconomy(message, guild, user);
+            }
             else if (content == "?StartTrade")
             {
                 await StartTrade(message, guild, user);

@@ -260,6 +260,23 @@ partial class Program
 
         await ShowGraph(message, dice, day, day2, e, price);
     }
+    public async Task SetEconomy(SocketMessage message, SocketGuild guild, SocketGuildUser user)
+    {
+        var text = message.Content.Substring("?SetEconomy ".Length);
+        var texts = text.Split(" ");
+
+        CalcFormula(texts[0], out string culcResult, out string showResult);
+
+        _economy = Economy.GreatDepression;
+
+        string comment = string.Empty;
+        if (texts.Length > 1)
+        {
+            _economy = (Economy)int.Parse(texts[0]);
+        }
+
+        await message.Channel.SendMessageAsync($"{_economy.ToString()}になりました！");
+    }
     private async Task ShowGraph(SocketMessage message, string dice, string day, string day2, int e, string price)
     {
         var plt = new Plot();
