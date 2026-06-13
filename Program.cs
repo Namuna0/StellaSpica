@@ -111,7 +111,7 @@ partial class Program
             {
                 await ShowEconomy(message, guild, user, -1);
             }
-            else if (content == "?SetEconomy")
+            else if (content.StartsWith("?SetEconomy"))
             {
                 await SetEconomy(message, guild, user);
             }
